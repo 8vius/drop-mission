@@ -1,0 +1,8 @@
+Aqui vamos a poner links con cosas interesantes para el juego, 
+cualquier tipo de tutorial q nos ayude.
+
+
+
+Aqui pongo un tutorial para hacer animaciones cheveres. Esto puede servir para las animaciones de cualquier elemento del juego pero mas importante por ahora es que sirve o puede servir para las animaciones del personaje.
+
+http://www.xnafusion.com/xna-animated-sprite-tutorial-beginner/
