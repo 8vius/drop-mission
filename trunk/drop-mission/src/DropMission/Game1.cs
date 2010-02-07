@@ -56,6 +56,7 @@ namespace DropMission
            
             // TODO: use this.Content to load your game content here
             player1.spriteSheetWalk = Content.Load<Texture2D>("Sprites//Player//walk");
+            player1.spriteSheetJump = Content.Load<Texture2D>("Sprites//Player//jump");
 
         }
 
@@ -90,7 +91,14 @@ namespace DropMission
             {
                 player1.CaminarIzquierda(gameTime);
             }
-            if (keyboardState.IsKeyUp(Keys.Right) && keyboardState.IsKeyUp(Keys.Left))
+            if ((keyboardState.IsKeyDown(Keys.Space) && previousKeyboardState.IsKeyUp(Keys.Space))
+                || player1.Status.Equals("SALTO"))
+            {
+                player1.Saltar(gameTime);
+            }
+
+            if ((previousKeyboardState.IsKeyDown(Keys.Right) && keyboardState.IsKeyUp(Keys.Right)) ||
+                (previousKeyboardState.IsKeyDown(Keys.Left) && keyboardState.IsKeyUp(Keys.Left)))
             {
                 player1.Reset();
             }

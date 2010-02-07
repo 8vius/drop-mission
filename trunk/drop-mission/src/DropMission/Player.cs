@@ -28,6 +28,9 @@ namespace DropMission
         public Rectangle sourceRect;
         public Rectangle destinationRect;
         public Texture2D spriteSheetWalk;
+        public Texture2D spriteSheetJump;
+
+        int tiempoDeSalto = 0; 
         #endregion
 
         #region Atributos de posicionamiento
@@ -55,6 +58,8 @@ namespace DropMission
             }
         }
         #endregion
+
+        public string Status = "";
 
         public Player()
         {
@@ -107,6 +112,22 @@ namespace DropMission
             sourceRect = new Rectangle(currentFrame * spriteWidth, 100, spriteWidth, spriteHeight);
 
             PosicionX -= 3;
+        }
+
+        public void Saltar(GameTime gameTime)
+        {
+            Status = "SALTO";
+
+            tiempoDeSalto += 1;
+            PosicionY = int.Parse(Math.Truncate(PosicionY + 0.5f * tiempoDeSalto - (5 * Math.Sqrt(tiempoDeSalto)) / 2).ToString()); 
+        
+            //Aqui deberia ser colisionando con el piso pero por ahora
+            if (PosicionY >= 450)
+            {
+                Status = "";
+                tiempoDeSalto = 0;
+                PosicionY = 450;
+            }
         }
     }
 }
