@@ -1,17 +1,15 @@
-#summary One-sentence summary of this page.
+===---------- Target Marketing ----------===
 
 
----------- Target Marketing ----------
-
-   *Casual players*, Games for this player category must be easy to play, without a complex storyline, and must provide challenging but brief levels to give the player a feeling of accomplishment in short matches.
+   Casual players, Games for this player category must be easy to play, without a complex storyline, and must provide challenging but brief levels to give the player a feeling of accomplishment in short matches.
 
 
----------- Game Genre ----------
+===---------- Game Genre ----------===
 
    Everyone(E)
 
 
----------- Game Team ----------
+===---------- Game Team ----------===
 
    Script writers: dont know yet.
 
@@ -30,7 +28,7 @@
    Testers: dont know yet.
 
 
----------- Game Planing ----------
+===---------- Game Planing ----------===
 
    Game goal:
 
