@@ -120,7 +120,6 @@ namespace DropMission
             tiempoDeSalto += 1;
             PosicionY = int.Parse(Math.Truncate(PosicionY + 0.38f * tiempoDeSalto - (5 * Math.Sqrt(tiempoDeSalto)) / 2).ToString());
 
-
             timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
             if (timer > interval)
