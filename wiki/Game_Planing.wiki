@@ -11,19 +11,17 @@
 
 ===---------- Game Team ----------===
 
-   Script writers: dont know yet.
+   Script writers: Enrique, Freddy, Luis Miguel(No el cantante)
 
-   Level designers: dont know yet.
+   Level designers: Enrique, Freddy, Luis Miguel, Santiago
 
-   Artists: dont know yet.
+   Artists: Santiago
 
-   Modelers: dont know yet.
-
-   Animators: dont know yet.
+   Animators: Santiago
 
    Musicians: dont know yet.
 
-   Programmers: Enrique, Freddy, Luis Miguel(No el cantante)
+   Programmers: Enrique, Freddy, Luis Miguel
 
    Testers: dont know yet.
 
