@@ -34,6 +34,16 @@ namespace DropMission
             destinationRect = new Rectangle(0, 0, spriteWidth, spriteHeight);
         }
 
+        public void Reset()
+        {
+            int sourceY = sourceRect.Y;
+
+            currentFrame = 0;
+            timer = 0f;
+            sourceRect = new Rectangle(currentFrame * spriteWidth, sourceRect.Y, spriteWidth, spriteHeight);
+            
+        }
+
         public void CaminarDerecha(GameTime gameTime)
         {
             timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;

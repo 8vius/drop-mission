@@ -90,6 +90,10 @@ namespace DropMission
             {
                 player1.CaminarIzquierda(gameTime);
             }
+            if (keyboardState.IsKeyUp(Keys.Right) && keyboardState.IsKeyUp(Keys.Left))
+            {
+                player1.Reset();
+            }
             
             previousKeyboardState = keyboardState;
 
