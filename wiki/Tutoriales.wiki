@@ -2,7 +2,16 @@ Aqui vamos a poner links con cosas interesantes para el juego,
 cualquier tipo de tutorial q nos ayude.
 
 
+*ANIMACION*
 
 Aqui pongo un tutorial para hacer animaciones cheveres. Esto puede servir para las animaciones de cualquier elemento del juego pero mas importante por ahora es que sirve o puede servir para las animaciones del personaje.
 
 http://www.xnafusion.com/xna-animated-sprite-tutorial-beginner/
+
+
+
+*SCROLLING DEL FONDO*
+
+Este lo consegui ahorita, no lo he probado pero supuestamente es para que podamos hacer que el fondo vaya moviendose como queremos. 
+
+http://www.xnadevelopment.com/tutorials/scrollinga2dbackground/ScrollingA2DBackground.shtml
