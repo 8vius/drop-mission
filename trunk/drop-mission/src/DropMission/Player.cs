@@ -60,10 +60,17 @@ namespace DropMission
         }
         #endregion
 
+        #region Gadgets
+
+        Weapon arma;
+
+        #endregion
+
         public string Status = "";
 
-        public Player()
+        public Player(Weapon _arma)
         {
+            arma = _arma;
             destinationRect = new Rectangle(100, 450, spriteWidth, spriteHeight);
             posicionXanterior = 100;
         }
@@ -75,7 +82,6 @@ namespace DropMission
             currentFrame = 0;
             timer = 0f;
             sourceRect = new Rectangle(currentFrame * spriteWidth, sourceRect.Y, spriteWidth, spriteHeight);
-            
         }
 
         public void CalcularTimer(GameTime gameTime)
@@ -96,9 +102,11 @@ namespace DropMission
             }
 
             sourceRect = new Rectangle(currentFrame * spriteWidth, 0, spriteWidth, spriteHeight);
+            arma.sourceRect = new Rectangle(arma.currentFrame * arma.spriteWidth, 0, arma.spriteWidth, arma.spriteHeight);
 
             posicionXanterior = PosicionX;
             PosicionX += 3;
+            arma.PosicionX += 3;
         }
 
         public void CaminarIzquierda()
@@ -114,9 +122,11 @@ namespace DropMission
             }
 
             sourceRect = new Rectangle(currentFrame * spriteWidth, 100, spriteWidth, spriteHeight);
+            arma.sourceRect = new Rectangle(arma.currentFrame * arma.spriteWidth, 100, arma.spriteWidth, arma.spriteHeight);
 
             posicionXanterior = PosicionX;
             PosicionX -= 3;
+            arma.PosicionX -= 3;
         }
 
         public void Saltar()

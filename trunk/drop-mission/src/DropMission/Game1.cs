@@ -24,6 +24,7 @@ namespace DropMission
         KeyboardState previousKeyboardState = Keyboard.GetState();
 
         Player player1;
+        Weapon arma;
 
         public Game1()
         {
@@ -40,8 +41,9 @@ namespace DropMission
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            player1 = new Player();
-
+            arma = new Weapon();
+            player1 = new Player(arma);
+            
             base.Initialize();
         }
 
@@ -57,7 +59,7 @@ namespace DropMission
             // TODO: use this.Content to load your game content here
             player1.spriteSheetWalk = Content.Load<Texture2D>("Sprites//Player//walk");
             player1.spriteSheetJump = Content.Load<Texture2D>("Sprites//Player//jump");
-
+            arma.spriteSheetWalk = Content.Load<Texture2D>("Sprites//Weapon//AK");
         }
 
         /// <summary>
@@ -122,10 +124,15 @@ namespace DropMission
             // TODO: Add your drawing code here
             spriteBatch.Begin();
 
-            if(player1.Status.Equals(""))
+            if (player1.Status.Equals(""))
+            {
                 spriteBatch.Draw(player1.spriteSheetWalk, player1.destinationRect, player1.sourceRect, Color.White);
-            if(player1.Status.Equals("SALTO"))
+                spriteBatch.Draw(arma.spriteSheetWalk, arma.destinationRect, arma.sourceRect, Color.White);
+            }
+            if (player1.Status.Equals("SALTO"))
+            {
                 spriteBatch.Draw(player1.spriteSheetJump, player1.destinationRect, player1.sourceRect, Color.White);
+            }
 
             spriteBatch.End();
 
