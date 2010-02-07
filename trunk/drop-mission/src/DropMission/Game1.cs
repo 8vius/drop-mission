@@ -83,18 +83,20 @@ namespace DropMission
             // TODO: Add your update logic here
             KeyboardState keyboardState = Keyboard.GetState();
 
+            player1.CalcularTimer(gameTime);
+
             if (keyboardState.IsKeyDown(Keys.Right))
             {
-                player1.CaminarDerecha(gameTime);
+                player1.CaminarDerecha();
             }
             if (keyboardState.IsKeyDown(Keys.Left))
             {
-                player1.CaminarIzquierda(gameTime);
+                player1.CaminarIzquierda();
             }
             if ((keyboardState.IsKeyDown(Keys.Space) && previousKeyboardState.IsKeyUp(Keys.Space))
                 || player1.Status.Equals("SALTO"))
             {
-                player1.Saltar(gameTime);
+                player1.Saltar();
             }
 
             if ((previousKeyboardState.IsKeyDown(Keys.Right) && keyboardState.IsKeyUp(Keys.Right)) ||

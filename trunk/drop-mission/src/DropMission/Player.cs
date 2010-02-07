@@ -76,10 +76,13 @@ namespace DropMission
             
         }
 
-        public void CaminarDerecha(GameTime gameTime)
-        {
+        public void CalcularTimer(GameTime gameTime)
+        { 
             timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+        }
 
+        public void CaminarDerecha()
+        {
             if (timer > interval)
             {
                 currentFrame++;
@@ -95,10 +98,8 @@ namespace DropMission
             PosicionX += 3;
         }
 
-        public void CaminarIzquierda(GameTime gameTime)
+        public void CaminarIzquierda()
         {
-            timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-
             if (timer > interval)
             {
                 currentFrame++;
@@ -114,13 +115,12 @@ namespace DropMission
             PosicionX -= 3;
         }
 
-        public void Saltar(GameTime gameTime)
+        public void Saltar()
         {
             Status = "SALTO";
             tiempoDeSalto += 1;
-            PosicionY = int.Parse(Math.Truncate(PosicionY + 0.38f * tiempoDeSalto - (5 * Math.Sqrt(tiempoDeSalto)) / 2).ToString());
-
-            timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            PosicionY = int.Parse(Math.Truncate(PosicionY - 1.5f * tiempoDeSalto
+                                + (0.1f * Math.Pow(tiempoDeSalto,2)) / 2).ToString());
 
             if (timer > interval)
             {
