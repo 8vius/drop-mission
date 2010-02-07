@@ -117,10 +117,24 @@ namespace DropMission
         public void Saltar(GameTime gameTime)
         {
             Status = "SALTO";
-
             tiempoDeSalto += 1;
-            PosicionY = int.Parse(Math.Truncate(PosicionY + 0.5f * tiempoDeSalto - (5 * Math.Sqrt(tiempoDeSalto)) / 2).ToString()); 
-        
+            PosicionY = int.Parse(Math.Truncate(PosicionY + 0.38f * tiempoDeSalto - (5 * Math.Sqrt(tiempoDeSalto)) / 2).ToString());
+
+
+            timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+
+            if (timer > interval)
+            {
+                currentFrame++;
+                if (currentFrame > frameCount - 1)
+                {
+                    currentFrame = 0;
+                }
+                timer = 0f;
+            }
+
+            sourceRect = new Rectangle(currentFrame * spriteWidth, 0, spriteWidth, spriteHeight);
+
             //Aqui deberia ser colisionando con el piso pero por ahora
             if (PosicionY >= 450)
             {

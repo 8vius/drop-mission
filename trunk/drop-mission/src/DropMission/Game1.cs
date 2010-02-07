@@ -120,7 +120,10 @@ namespace DropMission
             // TODO: Add your drawing code here
             spriteBatch.Begin();
 
-            spriteBatch.Draw(player1.spriteSheetWalk, player1.destinationRect, player1.sourceRect, Color.White);
+            if(player1.Status.Equals(""))
+                spriteBatch.Draw(player1.spriteSheetWalk, player1.destinationRect, player1.sourceRect, Color.White);
+            if(player1.Status.Equals("SALTO"))
+                spriteBatch.Draw(player1.spriteSheetJump, player1.destinationRect, player1.sourceRect, Color.White);
 
             spriteBatch.End();
 
