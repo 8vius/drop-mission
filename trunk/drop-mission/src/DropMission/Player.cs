@@ -30,6 +30,8 @@ namespace DropMission
         public Texture2D spriteSheetWalk;
         public Texture2D spriteSheetJump;
 
+        int posicionXanterior;
+
         int tiempoDeSalto = 0; 
         #endregion
 
@@ -64,6 +66,7 @@ namespace DropMission
         public Player()
         {
             destinationRect = new Rectangle(100, 450, spriteWidth, spriteHeight);
+            posicionXanterior = 100;
         }
 
         public void Reset()
@@ -95,6 +98,7 @@ namespace DropMission
 
             sourceRect = new Rectangle(currentFrame * spriteWidth, 0, spriteWidth, spriteHeight);
 
+            posicionXanterior = PosicionX;
             PosicionX += 3;
         }
 
@@ -112,6 +116,7 @@ namespace DropMission
 
             sourceRect = new Rectangle(currentFrame * spriteWidth, 100, spriteWidth, spriteHeight);
 
+            posicionXanterior = PosicionX;
             PosicionX -= 3;
         }
 
@@ -132,7 +137,10 @@ namespace DropMission
                 timer = 0f;
             }
 
-            sourceRect = new Rectangle(currentFrame * spriteWidth, 0, spriteWidth, spriteHeight);
+            if(posicionXanterior < PosicionX)
+                sourceRect = new Rectangle(currentFrame * spriteWidth, 0, spriteWidth, spriteHeight);
+            else
+                sourceRect = new Rectangle(currentFrame * spriteWidth, 100, spriteWidth, spriteHeight);
 
             //Aqui deberia ser colisionando con el piso pero por ahora
             if (PosicionY >= 450)
