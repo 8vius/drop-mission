@@ -21,6 +21,23 @@ namespace DropMission
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        KeyboardState previousKeyboardState = Keyboard.GetState();
+
+        #region Elementos para la animacion del char
+
+        Texture2D spriteSheet;
+        float timer = 0f;
+        float interval = 1000f / 15f;
+        int frameCount = 4;
+        int currentFrame = 0;
+        int spriteWidth = 150;
+        int spriteHeight = 100;
+
+        Rectangle sourceRect;
+        Rectangle destinationRect;
+
+        #endregion
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -50,6 +67,9 @@ namespace DropMission
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            spriteSheet = Content.Load<Texture2D>("Sprites//Player//walk");
+            destinationRect = new Rectangle(0, 0, spriteWidth, spriteHeight);
+
         }
 
         /// <summary>
@@ -73,8 +93,33 @@ namespace DropMission
                 this.Exit();
 
             // TODO: Add your update logic here
+            KeyboardState keyboardState = Keyboard.GetState();
+
+            if (keyboardState.IsKeyDown(Keys.Right))
+            {
+                CaminarDerecha(gameTime);
+            }
+            
+            previousKeyboardState = keyboardState;
 
             base.Update(gameTime);
+        }
+
+        private void CaminarDerecha(GameTime gameTime)
+        {
+            timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+
+            if (timer > interval)
+            {
+                currentFrame++;
+                if (currentFrame > frameCount - 1)
+                {
+                    currentFrame = 0;
+                }
+                timer = 0f;
+            }
+
+            sourceRect = new Rectangle(currentFrame * spriteWidth, 0, spriteWidth, spriteHeight);
         }
 
         /// <summary>
@@ -86,6 +131,12 @@ namespace DropMission
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+
+            spriteBatch.Draw(spriteSheet, destinationRect, sourceRect, Color.White);
+
+            spriteBatch.End();
+
 
             base.Draw(gameTime);
         }
