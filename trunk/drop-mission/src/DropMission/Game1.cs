@@ -23,20 +23,7 @@ namespace DropMission
 
         KeyboardState previousKeyboardState = Keyboard.GetState();
 
-        #region Elementos para la animacion del char
-
-        Texture2D spriteSheet;
-        float timer = 0f;
-        float interval = 1000f / 15f;
-        int frameCount = 4;
-        int currentFrame = 0;
-        int spriteWidth = 150;
-        int spriteHeight = 100;
-
-        Rectangle sourceRect;
-        Rectangle destinationRect;
-
-        #endregion
+        Player player1;
 
         public Game1()
         {
@@ -53,6 +40,7 @@ namespace DropMission
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            player1 = new Player();
 
             base.Initialize();
         }
@@ -65,10 +53,9 @@ namespace DropMission
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+           
             // TODO: use this.Content to load your game content here
-            spriteSheet = Content.Load<Texture2D>("Sprites//Player//walk");
-            destinationRect = new Rectangle(0, 0, spriteWidth, spriteHeight);
+            player1.spriteSheetWalk = Content.Load<Texture2D>("Sprites//Player//walk");
 
         }
 
@@ -97,7 +84,11 @@ namespace DropMission
 
             if (keyboardState.IsKeyDown(Keys.Right))
             {
-                CaminarDerecha(gameTime);
+                player1.CaminarDerecha(gameTime);
+            }
+            if (keyboardState.IsKeyDown(Keys.Left))
+            {
+                player1.CaminarIzquierda(gameTime);
             }
             
             previousKeyboardState = keyboardState;
@@ -105,22 +96,6 @@ namespace DropMission
             base.Update(gameTime);
         }
 
-        private void CaminarDerecha(GameTime gameTime)
-        {
-            timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-
-            if (timer > interval)
-            {
-                currentFrame++;
-                if (currentFrame > frameCount - 1)
-                {
-                    currentFrame = 0;
-                }
-                timer = 0f;
-            }
-
-            sourceRect = new Rectangle(currentFrame * spriteWidth, 0, spriteWidth, spriteHeight);
-        }
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -133,7 +108,7 @@ namespace DropMission
             // TODO: Add your drawing code here
             spriteBatch.Begin();
 
-            spriteBatch.Draw(spriteSheet, destinationRect, sourceRect, Color.White);
+            spriteBatch.Draw(player1.spriteSheetWalk, player1.destinationRect, player1.sourceRect, Color.White);
 
             spriteBatch.End();
 
