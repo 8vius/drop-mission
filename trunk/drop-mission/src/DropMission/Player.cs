@@ -16,6 +16,7 @@ namespace DropMission
 {
     public class Player
     {
+        #region Atributos para animacion
         const int spriteWidth = 150;
         const int spriteHeight = 100;
 
@@ -26,12 +27,38 @@ namespace DropMission
         
         public Rectangle sourceRect;
         public Rectangle destinationRect;
-
         public Texture2D spriteSheetWalk;
+        #endregion
+
+        #region Atributos de posicionamiento
+        int PosicionX 
+        {
+            get 
+            { 
+                return destinationRect.X; 
+            }
+            set 
+            {
+                destinationRect.X = value;
+            }
+        }
+
+        int PosicionY
+        {
+            get
+            {
+                return destinationRect.Y;
+            }
+            set
+            {
+                destinationRect.Y = value;
+            }
+        }
+        #endregion
 
         public Player()
         {
-            destinationRect = new Rectangle(0, 0, spriteWidth, spriteHeight);
+            destinationRect = new Rectangle(100, 450, spriteWidth, spriteHeight);
         }
 
         public void Reset()
@@ -59,6 +86,8 @@ namespace DropMission
             }
 
             sourceRect = new Rectangle(currentFrame * spriteWidth, 0, spriteWidth, spriteHeight);
+
+            PosicionX += 3;
         }
 
         public void CaminarIzquierda(GameTime gameTime)
@@ -76,6 +105,8 @@ namespace DropMission
             }
 
             sourceRect = new Rectangle(currentFrame * spriteWidth, 100, spriteWidth, spriteHeight);
+
+            PosicionX -= 3;
         }
     }
 }
