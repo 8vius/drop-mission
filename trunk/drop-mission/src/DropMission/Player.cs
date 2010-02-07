@@ -31,7 +31,6 @@ namespace DropMission
         public Texture2D spriteSheetJump;
 
         int posicionXanterior;
-
         int tiempoDeSalto = 0; 
         #endregion
 
