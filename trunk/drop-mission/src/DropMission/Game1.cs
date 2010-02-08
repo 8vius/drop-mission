@@ -30,11 +30,10 @@ namespace DropMission
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-#if DEBUG
-            fps = new FPS(this);
-            Components.Add(fps);
-#endif
-            input = new InputHandler(this);
+
+            player1 = new Player();
+
+            input = new InputHandler(this, player1);
             Components.Add(input);
         }
 
@@ -47,7 +46,6 @@ namespace DropMission
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            player1 = new Player();
             
             base.Initialize();
         }
@@ -90,38 +88,7 @@ namespace DropMission
             // TODO: Add your update logic here
             player1.CalcularTimer(gameTime);
 
-            HandleInput();
-
             base.Update(gameTime);
-        }
-
-
-        private void HandleInput()
-        {
-            KeyboardState keyboardState = Keyboard.GetState();
-
-            if (keyboardState.IsKeyDown(Keys.Right))
-            {
-                player1.CaminarDerecha();
-            }
-            if (keyboardState.IsKeyDown(Keys.Left))
-            {
-                player1.CaminarIzquierda();
-            }
-            if ((keyboardState.IsKeyDown(Keys.Space) && previousKeyboardState.IsKeyUp(Keys.Space))
-                || player1.Status.Equals("SALTO"))
-            {
-                player1.Saltar();
-            }
-
-            if ((previousKeyboardState.IsKeyDown(Keys.Right) && keyboardState.IsKeyUp(Keys.Right)) ||
-                (previousKeyboardState.IsKeyDown(Keys.Left) && keyboardState.IsKeyUp(Keys.Left)))
-            {
-                player1.Reset();
-            }
-
-            previousKeyboardState = keyboardState;
-  
         }
 
 

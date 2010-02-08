@@ -123,12 +123,18 @@ namespace DropMission.Entidades
 
         public string Status = "";
 
+        #region Constrcutor
+
         public Player()
         {
             arma = new Weapon();
             destinationRect = new Rectangle(100, 450, spriteWidth, spriteHeight);
             posicionXanterior = 100;
         }
+
+        #endregion
+
+        #region Metodos
 
         public void Reset()
         {
@@ -212,5 +218,7 @@ namespace DropMission.Entidades
                 PosicionY = 450;
             }
         }
+
+        #endregion
     }
 }
