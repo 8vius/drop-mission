@@ -93,7 +93,7 @@ namespace DropMission
             {
                 player1.CaminarIzquierda();
             }
-            if ((keyboardState.IsKeyDown(Keys.Space) && previousKeyboardState.IsKeyUp(Keys.Space))
+            if ((keyboardState.IsKeyDown(Keys.Up) && previousKeyboardState.IsKeyUp(Keys.Up))
                 || player1.Status.Equals("SALTO"))
             {
                 player1.Saltar();
