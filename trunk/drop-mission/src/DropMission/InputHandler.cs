@@ -24,24 +24,23 @@ namespace DropMission
         #region Atributos
 
         private KeyboardHandler keyboard;
-        private Player player1;
+        private Player player;
 
         #endregion
 
         #region Constructor
 
-        public InputHandler(Game game, Player player) : base(game)
+        public InputHandler(Game game, Player playerHandled) : base(game)
         {
             //Declara que el juego que entra como parametro va a usar un servicio del tipo IInputHandler
             game.Services.AddService(typeof(IInputHandler), this);
 
             keyboard = new KeyboardHandler();
-            player1 = player;
+            player = playerHandled;
 
         }
 
         #endregion
-
 
         public override void Initialize()
         {
@@ -61,24 +60,24 @@ namespace DropMission
 
             if (keyboard.IsKeyDown(Keys.Right))
             {
-                player1.CaminarDerecha();
+                player.CaminarDerecha();
             }
 
             if (keyboard.IsKeyDown(Keys.Left))
             {
-                player1.CaminarIzquierda();
+                player.CaminarIzquierda();
             }
 
             if ((keyboard.WasKeyPressed(Keys.Space))
-                || player1.Status.Equals("SALTO"))
+                || player.Status.Equals("SALTO"))
             {
-                player1.Saltar();
+                player.Saltar();
             }
 
             if ((keyboard.HasReleasedKey(Keys.Right) ||
                 (keyboard.HasReleasedKey(Keys.Left))))
             {
-                player1.Reset();
+                player.Reset();
             }
 
             base.Update(gameTime);
