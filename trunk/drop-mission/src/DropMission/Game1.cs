@@ -23,11 +23,19 @@ namespace DropMission
         SpriteBatch spriteBatch;
         KeyboardState previousKeyboardState = Keyboard.GetState();
         Player player1;
+        private FPS fps;
+        private InputHandler input;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+#if DEBUG
+            fps = new FPS(this);
+            Components.Add(fps);
+#endif
+            input = new InputHandler(this);
+            Components.Add(input);
         }
 
         /// <summary>
