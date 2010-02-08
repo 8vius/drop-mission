@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
+using DropMission.Entidades;
 
 namespace DropMission
 {
@@ -81,9 +82,17 @@ namespace DropMission
                 this.Exit();
 
             // TODO: Add your update logic here
-            KeyboardState keyboardState = Keyboard.GetState();
-
             player1.CalcularTimer(gameTime);
+
+            HandleInput();
+
+            base.Update(gameTime);
+        }
+
+
+        private void HandleInput()
+        {
+            KeyboardState keyboardState = Keyboard.GetState();
 
             if (keyboardState.IsKeyDown(Keys.Right))
             {
@@ -104,10 +113,9 @@ namespace DropMission
             {
                 player1.Reset();
             }
-            
-            previousKeyboardState = keyboardState;
 
-            base.Update(gameTime);
+            previousKeyboardState = keyboardState;
+  
         }
 
 
