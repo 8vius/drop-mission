@@ -71,8 +71,7 @@ namespace DropMission
 
         #endregion
 
-        public string Status = "";
-
+        #region Propiedades
         public virtual Rectangle RectanguloFuente
         {
             get
@@ -120,6 +119,9 @@ namespace DropMission
                 spriteSheetJump = value;
             }
         }
+        #endregion
+
+        public string Status = "";
 
         public Player()
         {
@@ -155,7 +157,7 @@ namespace DropMission
             }
 
             sourceRect = new Rectangle(currentFrame * spriteWidth, 0, spriteWidth, spriteHeight);
-            arma.RectanguloFuente = new Rectangle(arma.FrameActual * arma.SpriteAncho, 0, arma.SpriteAncho, arma.SpriteAlto);
+            arma.RectanguloFuente = new Rectangle(arma.FrameActual * arma.SpriteWidth, 0, arma.SpriteWidth, arma.SpriteHeight);
 
             posicionXanterior = PosicionX;
             PosicionX += 3;
@@ -174,7 +176,7 @@ namespace DropMission
             }
 
             sourceRect = new Rectangle(currentFrame * spriteWidth, 100, spriteWidth, spriteHeight);
-            arma.RectanguloFuente = new Rectangle(arma.FrameActual * arma.SpriteAncho, 100, arma.SpriteAncho, arma.SpriteAlto);
+            arma.RectanguloFuente = new Rectangle(arma.FrameActual * arma.SpriteWidth, 100, arma.SpriteWidth, arma.SpriteHeight);
 
             posicionXanterior = PosicionX;
             PosicionX -= 3;

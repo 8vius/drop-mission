@@ -56,12 +56,8 @@ namespace DropMission
         }
         #endregion
 
-        public Weapon()
-        {
-            destinationRect = new Rectangle(100, 450, spriteWidth, spriteHeight);
-        }
-
-        public virtual Rectangle RectanguloFuente
+        #region Propiedades
+        public Rectangle RectanguloFuente
         {
             get
             {
@@ -73,7 +69,7 @@ namespace DropMission
             }
         }
 
-        public virtual Rectangle RectanguloDestino
+        public Rectangle RectanguloDestino
         {
             get
             {
@@ -85,7 +81,7 @@ namespace DropMission
             }
         }
 
-        public virtual Texture2D SpriteArma
+        public Texture2D SpriteArma
         {
             get
             {
@@ -97,7 +93,7 @@ namespace DropMission
             }
         }
 
-        public virtual int FrameActual
+        public int FrameActual
         {
             get
             {
@@ -109,20 +105,20 @@ namespace DropMission
             }
         }
 
-        public virtual int SpriteAncho
+        public int SpriteWidth
         {
-            get
-            {
-                return spriteWidth;
-            }
+            get { return spriteWidth; }
         }
 
-        public virtual int SpriteAlto
+        public int SpriteHeight
         {
-            get
-            {
-                return spriteHeight;
-            }
+            get { return spriteHeight; }
+        }
+        #endregion
+
+        public Weapon()
+        {
+            destinationRect = new Rectangle(100, 450, spriteWidth, spriteHeight);
         }
     }
 }
