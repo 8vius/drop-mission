@@ -123,7 +123,7 @@ namespace DropMission.Entidades
 
         public string Status = "";
 
-        #region Constrcutor
+        #region Constructor
 
         public Player()
         {
@@ -166,7 +166,7 @@ namespace DropMission.Entidades
             arma.RectanguloFuente = new Rectangle(arma.FrameActual * arma.SpriteWidth, 0, arma.SpriteWidth, arma.SpriteHeight);
 
             posicionXanterior = PosicionX;
-            PosicionX += 3;
+            PosicionX += 5;
         }
 
         public void CaminarIzquierda()
@@ -185,7 +185,7 @@ namespace DropMission.Entidades
             arma.RectanguloFuente = new Rectangle(arma.FrameActual * arma.SpriteWidth, 100, arma.SpriteWidth, arma.SpriteHeight);
 
             posicionXanterior = PosicionX;
-            PosicionX -= 3;
+            PosicionX -= 5;
         }
 
         public void Saltar()
