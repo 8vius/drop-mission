@@ -24,7 +24,6 @@ namespace DropMission
         KeyboardState previousKeyboardState = Keyboard.GetState();
 
         Player player1;
-        Weapon arma;
 
         public Game1()
         {
@@ -41,8 +40,7 @@ namespace DropMission
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            arma = new Weapon();
-            player1 = new Player(arma);
+            player1 = new Player();
             
             base.Initialize();
         }
@@ -57,9 +55,9 @@ namespace DropMission
             spriteBatch = new SpriteBatch(GraphicsDevice);
            
             // TODO: use this.Content to load your game content here
-            player1.spriteSheetWalk = Content.Load<Texture2D>("Sprites//Player//walk");
-            player1.spriteSheetJump = Content.Load<Texture2D>("Sprites//Player//jump");
-            arma.spriteSheetWalk = Content.Load<Texture2D>("Sprites//Weapon//AK");
+            player1.SpriteCaminar = Content.Load<Texture2D>("Sprites//Player//walk");
+            player1.SpriteSaltar = Content.Load<Texture2D>("Sprites//Player//jump");
+            player1.arma.SpriteArma = Content.Load<Texture2D>("Sprites//Weapon//AK");
         }
 
         /// <summary>
@@ -126,12 +124,12 @@ namespace DropMission
 
             if (player1.Status.Equals(""))
             {
-                spriteBatch.Draw(player1.spriteSheetWalk, player1.destinationRect, player1.sourceRect, Color.White);
-                spriteBatch.Draw(arma.spriteSheetWalk, arma.destinationRect, arma.sourceRect, Color.White);
+                spriteBatch.Draw(player1.SpriteCaminar, player1.RectanguloDestino, player1.RectanguloFuente, Color.White);
+                spriteBatch.Draw(player1.arma.SpriteArma, player1.arma.RectanguloDestino, player1.arma.RectanguloFuente, Color.White);
             }
             if (player1.Status.Equals("SALTO"))
             {
-                spriteBatch.Draw(player1.spriteSheetJump, player1.destinationRect, player1.sourceRect, Color.White);
+                spriteBatch.Draw(player1.SpriteSaltar, player1.RectanguloDestino, player1.RectanguloFuente, Color.White);
             }
 
             spriteBatch.End();

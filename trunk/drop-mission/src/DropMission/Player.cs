@@ -17,24 +17,27 @@ namespace DropMission
     public class Player
     {
         #region Atributos para animacion
-        const int spriteWidth = 150;
-        const int spriteHeight = 100;
 
-        float timer = 0f;
-        float interval = 1000f / 15f;
-        int frameCount = 4;
-        int currentFrame = 0;
+        private const int spriteWidth = 150;
+        private const int spriteHeight = 100;
+
+        private float timer = 0f;
+        private float interval = 1000f / 15f;
+        private int frameCount = 4;
+        private int currentFrame = 0;
         
-        public Rectangle sourceRect;
-        public Rectangle destinationRect;
-        public Texture2D spriteSheetWalk;
-        public Texture2D spriteSheetJump;
+        private Rectangle sourceRect;
+        private Rectangle destinationRect;
+        private Texture2D spriteSheetWalk;
+        private Texture2D spriteSheetJump;
 
-        int posicionXanterior;
-        int tiempoDeSalto = 0; 
+        private int posicionXanterior;
+        private int tiempoDeSalto = 0; 
+
         #endregion
 
         #region Atributos de posicionamiento
+
         int PosicionX 
         {
             get 
@@ -44,6 +47,7 @@ namespace DropMission
             set 
             {
                 destinationRect.X = value;
+                arma.PosicionX = value;
             }
         }
 
@@ -58,19 +62,68 @@ namespace DropMission
                 destinationRect.Y = value;
             }
         }
+
         #endregion
 
         #region Gadgets
 
-        Weapon arma;
+        public Weapon arma;
 
         #endregion
 
         public string Status = "";
 
-        public Player(Weapon _arma)
+        public virtual Rectangle RectanguloFuente
         {
-            arma = _arma;
+            get
+            {
+                return sourceRect;
+            }
+            set
+            {
+                sourceRect = value;
+            }
+        }
+
+        public virtual Rectangle RectanguloDestino
+        {
+            get
+            {
+                return destinationRect;
+            }
+            set
+            {
+                destinationRect = value;
+            }
+        }
+
+        public virtual Texture2D SpriteCaminar
+        {
+            get
+            {
+                return spriteSheetWalk;
+            }
+            set
+            {
+                spriteSheetWalk = value;
+            }
+        }
+
+        public virtual Texture2D SpriteSaltar
+        {
+            get
+            {
+                return spriteSheetJump;
+            }
+            set
+            {
+                spriteSheetJump = value;
+            }
+        }
+
+        public Player()
+        {
+            arma = new Weapon();
             destinationRect = new Rectangle(100, 450, spriteWidth, spriteHeight);
             posicionXanterior = 100;
         }
@@ -102,11 +155,10 @@ namespace DropMission
             }
 
             sourceRect = new Rectangle(currentFrame * spriteWidth, 0, spriteWidth, spriteHeight);
-            arma.sourceRect = new Rectangle(arma.currentFrame * arma.spriteWidth, 0, arma.spriteWidth, arma.spriteHeight);
+            arma.RectanguloFuente = new Rectangle(arma.FrameActual * arma.SpriteAncho, 0, arma.SpriteAncho, arma.SpriteAlto);
 
             posicionXanterior = PosicionX;
             PosicionX += 3;
-            arma.PosicionX += 3;
         }
 
         public void CaminarIzquierda()
@@ -122,11 +174,10 @@ namespace DropMission
             }
 
             sourceRect = new Rectangle(currentFrame * spriteWidth, 100, spriteWidth, spriteHeight);
-            arma.sourceRect = new Rectangle(arma.currentFrame * arma.spriteWidth, 100, arma.spriteWidth, arma.spriteHeight);
+            arma.RectanguloFuente = new Rectangle(arma.FrameActual * arma.SpriteAncho, 100, arma.SpriteAncho, arma.SpriteAlto);
 
             posicionXanterior = PosicionX;
             PosicionX -= 3;
-            arma.PosicionX -= 3;
         }
 
         public void Saltar()

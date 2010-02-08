@@ -17,21 +17,17 @@ namespace DropMission
     public class Weapon
     {
         #region Atributos para animacion
-        public int spriteWidth = 187;
-        public int spriteHeight = 100;
 
-        float timer = 0f;
-        float interval = 1000f / 15f;
-        public int frameCount = 4;
-        public int currentFrame = 0;
+        private const int spriteWidth = 150;
+        private const int spriteHeight = 100;
 
-        public Rectangle sourceRect;
-        public Rectangle destinationRect;
-        public Texture2D spriteSheetWalk;
-        public Texture2D spriteSheetJump;
+        private int frameCount = 5;
+        private int currentFrame = 0;
 
-        int posicionXanterior;
-        int tiempoDeSalto = 0;
+        private Rectangle sourceRect;
+        private Rectangle destinationRect;
+        private Texture2D spriteSheet;
+
         #endregion
 
         #region Atributos de posicionamiento
@@ -65,13 +61,68 @@ namespace DropMission
             destinationRect = new Rectangle(100, 450, spriteWidth, spriteHeight);
         }
 
-        public void Reset()
+        public virtual Rectangle RectanguloFuente
         {
-            int sourceY = sourceRect.Y;
+            get
+            {
+                return sourceRect;
+            }
+            set
+            {
+                sourceRect = value;
+            }
+        }
 
-            currentFrame = 0;
-            timer = 0f;
-            sourceRect = new Rectangle(currentFrame * spriteWidth, sourceRect.Y, spriteWidth, spriteHeight);
+        public virtual Rectangle RectanguloDestino
+        {
+            get
+            {
+                return destinationRect;
+            }
+            set
+            {
+                destinationRect = value;
+            }
+        }
+
+        public virtual Texture2D SpriteArma
+        {
+            get
+            {
+                return spriteSheet;
+            }
+            set
+            {
+                spriteSheet = value;
+            }
+        }
+
+        public virtual int FrameActual
+        {
+            get
+            {
+                return currentFrame;
+            }
+            set
+            {
+                currentFrame = value;
+            }
+        }
+
+        public virtual int SpriteAncho
+        {
+            get
+            {
+                return spriteWidth;
+            }
+        }
+
+        public virtual int SpriteAlto
+        {
+            get
+            {
+                return spriteHeight;
+            }
         }
     }
 }
