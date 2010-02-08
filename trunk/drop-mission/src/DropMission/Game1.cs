@@ -21,9 +21,7 @@ namespace DropMission
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
         KeyboardState previousKeyboardState = Keyboard.GetState();
-
         Player player1;
 
         public Game1()
