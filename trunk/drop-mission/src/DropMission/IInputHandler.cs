@@ -10,7 +10,7 @@ namespace DropMission
     {
         #region Propiedades
 
-        KeyboardState KeyboardState { get; }
+        KeyboardHandler KeyboardState { get; }
 
         #endregion
     }

@@ -14,17 +14,16 @@ namespace DropMission
 
         #region IInputHandler Propiedades
 
-        public KeyboardState KeyboardState
+        public KeyboardHandler KeyboardState
         {
-            get { return (keyboardState); }
+            get { return (keyboard); }
         }
 
         #endregion
 
         #region Atributos
 
-        private KeyboardState keyboardState;
-        private KeyboardState previousKeyboardState;
+        private KeyboardHandler keyboard;
         private Player player1;
 
         #endregion
@@ -36,45 +35,52 @@ namespace DropMission
             //Declara que el juego que entra como parametro va a usar un servicio del tipo IInputHandler
             game.Services.AddService(typeof(IInputHandler), this);
 
+            keyboard = new KeyboardHandler();
             player1 = player;
+
         }
 
         #endregion
 
 
+        public override void Initialize()
+        {
+            base.Initialize();
+        }
+
         #region Update
 
         public override void Update(GameTime gameTime)
         {
-            keyboardState = Keyboard.GetState();
-            if (keyboardState.IsKeyDown(Keys.Escape))
+            keyboard.Update();
+
+            if (keyboard.IsKeyDown(Keys.Escape))
             {
                 Game.Exit();
             }
 
-            if (keyboardState.IsKeyDown(Keys.Right))
+            if (keyboard.IsKeyDown(Keys.Right))
             {
                 player1.CaminarDerecha();
             }
 
-            if (keyboardState.IsKeyDown(Keys.Left))
+            if (keyboard.IsKeyDown(Keys.Left))
             {
                 player1.CaminarIzquierda();
             }
 
-            if ((keyboardState.IsKeyDown(Keys.Space) && previousKeyboardState.IsKeyUp(Keys.Space))
+            if ((keyboard.WasKeyPressed(Keys.Space))
                 || player1.Status.Equals("SALTO"))
             {
                 player1.Saltar();
             }
 
-            if ((previousKeyboardState.IsKeyDown(Keys.Right) && keyboardState.IsKeyUp(Keys.Right)) ||
-                (previousKeyboardState.IsKeyDown(Keys.Left) && keyboardState.IsKeyUp(Keys.Left)))
+            if ((keyboard.HasReleasedKey(Keys.Right) ||
+                (keyboard.HasReleasedKey(Keys.Left))))
             {
                 player1.Reset();
             }
 
-            previousKeyboardState = KeyboardState;
             base.Update(gameTime);
         }
 
