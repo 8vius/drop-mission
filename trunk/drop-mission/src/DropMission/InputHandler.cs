@@ -42,10 +42,14 @@ namespace DropMission
 
         #endregion
 
+        #region Initialize
+
         public override void Initialize()
         {
             base.Initialize();
         }
+
+        #endregion
 
         #region Update
 
