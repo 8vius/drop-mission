@@ -84,6 +84,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entidades\Bala.cs" />
     <Compile Include="Entidades\Weapon.cs" />
     <Compile Include="Entidades\Player.cs" />
     <Compile Include="FPS.cs" />
