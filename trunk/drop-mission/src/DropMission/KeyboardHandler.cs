@@ -25,6 +25,7 @@ namespace DropMission
 
         #endregion
 
+        #region Eventos del teclado
 
         public bool IsKeyDown(Keys key)
         {
@@ -48,6 +49,8 @@ namespace DropMission
             return (keyboardState.IsKeyUp(key) &&
             prevKeyboardState.IsKeyDown(key));
         }
+
+        #endregion
 
         #region Update
 
