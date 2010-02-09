@@ -127,7 +127,6 @@ namespace DropMission.Entidades
         public Weapon()
         {
             destinationRect = new Rectangle(100, 450, spriteWidth, spriteHeight);
-            
         }
     }
 }
