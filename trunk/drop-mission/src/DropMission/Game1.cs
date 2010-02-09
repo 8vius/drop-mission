@@ -63,6 +63,18 @@ namespace DropMission
             player1.SpriteCaminar = Content.Load<Texture2D>("Sprites//Player//walk");
             player1.SpriteSaltar = Content.Load<Texture2D>("Sprites//Player//jump");
             player1.arma.SpriteArma = Content.Load<Texture2D>("Sprites//Weapon//AK");
+
+            List<Bala> balas = new List<Bala>();
+
+            for (int i = 0; i < 30; i++)
+            {
+                balas.Add(new Bala());
+                balas.ElementAt(i).SpriteBala = Content.Load<Texture2D>("Sprites//Weapon//bala");
+            }
+
+            player1.arma.Balas = balas;
+
+            
         }
 
         /// <summary>

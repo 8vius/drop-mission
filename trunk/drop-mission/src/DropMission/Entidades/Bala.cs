@@ -12,23 +12,20 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
+
 namespace DropMission.Entidades
 {
-    public class Weapon
+    public class Bala
     {
         #region Atributos para animacion
 
-        private const int spriteWidth = 150;
-        private const int spriteHeight = 100;
+        private const int spriteWidth = 20;
+        private const int spriteHeight = 20;
 
-        private int frameCount = 5;
-        private int currentFrame = 0;
 
         private Rectangle sourceRect;
         private Rectangle destinationRect;
         private Texture2D spriteSheet;
-
-        private List<Bala> clip;
 
         #endregion
 
@@ -83,7 +80,7 @@ namespace DropMission.Entidades
             }
         }
 
-        public Texture2D SpriteArma
+        public Texture2D SpriteBala
         {
             get
             {
@@ -95,23 +92,7 @@ namespace DropMission.Entidades
             }
         }
 
-        public List<Bala> Balas
-        {
-            get { return clip; }
-            set { clip = value; }
-        }
-
-        public int FrameActual
-        {
-            get
-            {
-                return currentFrame;
-            }
-            set
-            {
-                currentFrame = value;
-            }
-        }
+        
 
         public int SpriteWidth
         {
@@ -124,10 +105,9 @@ namespace DropMission.Entidades
         }
         #endregion
 
-        public Weapon()
+        public Bala()
         {
             destinationRect = new Rectangle(100, 450, spriteWidth, spriteHeight);
-            
         }
     }
 }
