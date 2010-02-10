@@ -235,5 +235,32 @@ namespace DropMission.Entidades
         }
 
         #endregion
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+
+            if (this.Status.Equals(""))
+            {
+                spriteBatch.Draw(this.SpriteCaminar, this.RectanguloDestino, this.RectanguloFuente, Color.White);
+                spriteBatch.Draw(this.arma.SpriteArma, this.arma.RectanguloDestino, this.arma.RectanguloFuente, Color.White);
+            }
+            if (this.Status.Equals("SALTO"))
+            {
+                spriteBatch.Draw(this.SpriteSaltar, this.RectanguloDestino, this.RectanguloFuente, Color.White);
+            }
+
+            foreach (Bala bala in this.arma.Balas)
+            {
+                if (bala.Vivo)
+                {
+                    spriteBatch.Draw(bala.SpriteBala,
+                                     bala.Posicion,
+                                     Color.White);
+                }
+            }
+           
+  
+        }
+    
     }
 }

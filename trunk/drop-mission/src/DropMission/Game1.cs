@@ -126,30 +126,9 @@ namespace DropMission
             // TODO: Add your drawing code here
             spriteBatch.Begin();
 
-            if (player1.Status.Equals(""))
-            {
-                spriteBatch.Draw(player1.SpriteCaminar, player1.RectanguloDestino, player1.RectanguloFuente, Color.White);
-                spriteBatch.Draw(player1.arma.SpriteArma, player1.arma.RectanguloDestino, player1.arma.RectanguloFuente, Color.White);
-            }
-            if (player1.Status.Equals("SALTO"))
-            {
-                spriteBatch.Draw(player1.SpriteSaltar, player1.RectanguloDestino, player1.RectanguloFuente, Color.White);
-            }
-
-            foreach (Bala bala in player1.arma.Balas)
-            {
-                if (bala.Vivo)
-                {
-                    spriteBatch.Draw(bala.SpriteBala,
-                                     bala.Posicion,
-                                     Color.White);
-                }
-            }
+            player1.Draw(spriteBatch);
 
             spriteBatch.End();
-
-            
-
 
             base.Draw(gameTime);
         }
