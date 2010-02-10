@@ -58,7 +58,7 @@ namespace DropMission
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-           
+
             // TODO: use this.Content to load your game content here
             player1.SpriteCaminar = Content.Load<Texture2D>("Sprites//Player//walk");
             player1.SpriteSaltar = Content.Load<Texture2D>("Sprites//Player//jump");
@@ -105,6 +105,7 @@ namespace DropMission
             {
                 if (bala.Vivo)
                 {
+                    
                     bala.Mover();
                 }
             
