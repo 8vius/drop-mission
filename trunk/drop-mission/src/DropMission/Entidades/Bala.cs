@@ -118,7 +118,12 @@ namespace DropMission.Entidades
 
         public void Mover()
         {
-            posicion.X += velocity.X;
+            posicion += velocity;
+
+            if (Posicion.X < -SpriteBala.Width || Posicion.X > (800 + SpriteBala.Width))
+                Vivo = false;
+            if (Posicion.Y < SpriteBala.Height || Posicion.Y > (600 + SpriteBala.Height))
+                Vivo = false;
         }
     }
 }

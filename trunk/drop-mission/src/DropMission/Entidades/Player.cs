@@ -225,6 +225,60 @@ namespace DropMission.Entidades
             }
         }
 
+        public void GirarArma(int inclinacion)
+        {
+            switch (inclinacion)
+            {
+
+                case 0:
+                    arma.Rotacion = 0.0f;
+                    break;
+                case 1:
+                    arma.Rotacion = (float)-MathHelper.PiOver4;
+                    arma.RectanguloFuente = new Rectangle(150, 
+                                                          0, 
+                                                          arma.SpriteWidth, 
+                                                          arma.SpriteHeight);
+                    break;
+                case 2:
+                    arma.Rotacion = (float)-MathHelper.PiOver2;
+                    if (sourceRect.Y == 0)
+                        arma.RectanguloFuente = new Rectangle(450,
+                                                          0,
+                                                          arma.SpriteWidth,
+                                                          arma.SpriteHeight);
+
+                    break;
+                case 3:
+                    arma.Rotacion = (float)-(MathHelper.PiOver2 + MathHelper.PiOver4);
+                    arma.RectanguloFuente = new Rectangle(150,
+                                                          100,
+                                                          arma.SpriteWidth,
+                                                          arma.SpriteHeight);
+                    break;
+                case 4:
+                    arma.Rotacion = (float)MathHelper.Pi;
+                    break;
+                case 5:
+                    arma.Rotacion = (float)MathHelper.Pi + MathHelper.PiOver4;
+                    arma.RectanguloFuente = new Rectangle(300,
+                                                          100,
+                                                          arma.SpriteWidth,
+                                                          arma.SpriteHeight);
+                    break;
+                case 6:
+                    arma.Rotacion = (float)MathHelper.PiOver2;
+                    break;
+                case 7:
+                    arma.Rotacion = (float)MathHelper.PiOver4;
+                    arma.RectanguloFuente = new Rectangle(300,
+                                                          0,
+                                                          arma.SpriteWidth,
+                                                          arma.SpriteHeight);
+                    break;
+            }
+        }
+
         public void Disparar()
         {
             foreach (Bala bala in arma.Balas)
