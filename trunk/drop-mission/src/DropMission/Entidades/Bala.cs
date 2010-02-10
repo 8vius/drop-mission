@@ -21,8 +21,12 @@ namespace DropMission.Entidades
 
         private const int spriteWidth = 20;
         private const int spriteHeight = 20;
+        private Vector2 velocity;
+
+        private bool alive;
 
 
+        private Vector2 posicion;
         private Rectangle sourceRect;
         private Rectangle destinationRect;
         private Texture2D spriteSheet;
@@ -30,28 +34,16 @@ namespace DropMission.Entidades
         #endregion
 
         #region Atributos de posicionamiento
-        public int PosicionX
-        {
-            get
-            {
-                return destinationRect.X;
-            }
-            set
-            {
-                destinationRect.X = value;
-            }
-        }
 
-        public int PosicionY
+        public Vector2 Posicion
         {
-            get
-            {
-                return destinationRect.Y;
-            }
-            set
-            {
-                destinationRect.Y = value;
-            }
+            get { return posicion; }
+            set { posicion = value; }
+        }
+        public Vector2 Velocidad
+        {
+            get { return velocity; }
+            set { velocity = value; }
         }
         #endregion
 
@@ -103,11 +95,20 @@ namespace DropMission.Entidades
         {
             get { return spriteHeight; }
         }
+
+        public bool Vivo
+        {
+            get { return alive; }
+            set { alive = value; }
+        }
         #endregion
 
         public Bala()
         {
             destinationRect = new Rectangle(100, 450, spriteWidth, spriteHeight);
+            Velocidad = Vector2.Zero;
+            Vivo = false;
+            
         }
     }
 }

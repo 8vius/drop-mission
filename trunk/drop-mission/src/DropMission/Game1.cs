@@ -125,7 +125,20 @@ namespace DropMission
                 spriteBatch.Draw(player1.SpriteSaltar, player1.RectanguloDestino, player1.RectanguloFuente, Color.White);
             }
 
+            foreach (Bala bala in player1.arma.Balas)
+            {
+                if (bala.Vivo)
+                {
+                    spriteBatch.Draw(bala.SpriteBala,
+                                     bala.RectanguloDestino,
+                                     bala.RectanguloFuente,
+                                     Color.White);
+                }
+            }
+
             spriteBatch.End();
+
+            
 
 
             base.Draw(gameTime);

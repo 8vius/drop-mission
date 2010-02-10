@@ -20,6 +20,7 @@ namespace DropMission.Entidades
 
         private const int spriteWidth = 150;
         private const int spriteHeight = 100;
+        private float rotation;
 
         private int frameCount = 5;
         private int currentFrame = 0;
@@ -55,6 +56,12 @@ namespace DropMission.Entidades
             {
                 destinationRect.Y = value;
             }
+        }
+
+        public float Rotacion
+        {
+            get { return rotation; }
+            set { rotation = value; }
         }
         #endregion
 
@@ -127,6 +134,7 @@ namespace DropMission.Entidades
         public Weapon()
         {
             destinationRect = new Rectangle(100, 450, spriteWidth, spriteHeight);
+            rotation = 0.0f;
         }
     }
 }

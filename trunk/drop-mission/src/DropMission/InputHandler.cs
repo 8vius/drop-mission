@@ -78,6 +78,11 @@ namespace DropMission
                 player.Saltar();
             }
 
+            if (keyboard.IsKeyDown(Keys.F))
+            {
+                player.Disparar();
+            }
+
             if ((keyboard.HasReleasedKey(Keys.Right) ||
                 (keyboard.HasReleasedKey(Keys.Left))))
             {

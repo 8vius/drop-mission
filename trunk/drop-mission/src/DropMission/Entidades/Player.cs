@@ -219,6 +219,22 @@ namespace DropMission.Entidades
             }
         }
 
+        public void Disparar()
+        {
+            foreach (Bala bala in arma.Balas)
+            {
+                if (!bala.Vivo)
+                {
+                    bala.Vivo = true;
+                    bala.Posicion = new Vector2(arma.PosicionX - bala.Posicion.X / 2, 
+                                                    arma.PosicionY - bala.Posicion.Y / 2);
+                    bala.Velocidad = new Vector2((float)Math.Cos(arma.Rotacion),
+                                                    (float)Math.Sin(arma.Rotacion)) * 0.5f;
+                    return;
+                }
+            }
+        }
+
         #endregion
     }
 }
