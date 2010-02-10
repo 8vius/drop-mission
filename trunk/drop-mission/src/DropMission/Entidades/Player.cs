@@ -15,7 +15,10 @@ using Microsoft.Xna.Framework.Storage;
 namespace DropMission.Entidades
 {
     public enum estadoPlayer
-    { Caminando, Saltando }
+    { 
+        Caminando, 
+        Saltando 
+    };
 
     public class Player
     {
@@ -123,8 +126,7 @@ namespace DropMission.Entidades
             }
         }
         #endregion
-
-        
+  
         public estadoPlayer Status;
 
         #region Constructor
@@ -263,8 +265,6 @@ namespace DropMission.Entidades
                                      Color.White);
                 }
             }
-           
-  
         }
     
     }

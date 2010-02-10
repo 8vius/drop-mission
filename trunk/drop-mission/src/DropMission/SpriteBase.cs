@@ -58,30 +58,9 @@ namespace DropMission
 
         public override void Update(GameTime gameTime)
         {
-            CaminarDerecha();
-
             base.Update(gameTime);
         }
 
-        public void CaminarDerecha()
-        {
-
-            if (timer > interval)
-            {
-                currentFrame++;
-                if (currentFrame > frameCount - 1)
-                {
-                    currentFrame = 0;
-                }
-                timer = 0f;
-            }
-
-            sourceRect = new Rectangle(currentFrame * spriteWidth, 0, spriteWidth, spriteHeight);
-            //arma.RectanguloFuente = new Rectangle(arma.FrameActual * arma.SpriteWidth, 0, arma.SpriteWidth, arma.SpriteHeight);
-
-            posicionXanterior = destinationRect.X;
-            destinationRect.X += 5;
-        }
 
         public override void Draw(GameTime gameTime)
         {
