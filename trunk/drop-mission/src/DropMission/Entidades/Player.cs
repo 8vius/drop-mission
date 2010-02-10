@@ -134,7 +134,7 @@ namespace DropMission.Entidades
         {
             this.Status = estadoPlayer.Caminando;
             arma = new Weapon();
-            destinationRect = new Rectangle(100, 450, (int)SpritePlayer.width, (int)SpritePlayer.height);
+            destinationRect = new Rectangle(100, 450, spriteWidth, spriteHeight);
             posicionXanterior = 100;
         }
 

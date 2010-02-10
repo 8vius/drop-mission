@@ -85,10 +85,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entidades\Bala.cs" />
-    <Compile Include="Entidades\EnumAnimacion.cs" />
     <Compile Include="Entidades\Weapon.cs" />
     <Compile Include="Entidades\Player.cs" />
-    <Compile Include="FPS.cs" />
     <Compile Include="IInputHandler.cs" />
     <Compile Include="InputHandler.cs" />
     <Compile Include="KeyboardHandler.cs" />

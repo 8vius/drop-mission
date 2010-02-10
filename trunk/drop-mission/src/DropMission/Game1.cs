@@ -23,7 +23,6 @@ namespace DropMission
         SpriteBatch spriteBatch;
         KeyboardState previousKeyboardState = Keyboard.GetState();
         Player player1;
-        private FPS fps;
         private InputHandler input;
 
         public Game1()
