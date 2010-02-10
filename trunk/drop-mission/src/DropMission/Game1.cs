@@ -104,7 +104,6 @@ namespace DropMission
             {
                 if (bala.Vivo)
                 {
-                    
                     bala.Mover();
                 }
             

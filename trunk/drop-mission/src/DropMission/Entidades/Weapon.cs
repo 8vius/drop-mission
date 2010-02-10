@@ -134,7 +134,7 @@ namespace DropMission.Entidades
         public Weapon()
         {
             destinationRect = new Rectangle(100, 450, spriteWidth, spriteHeight);
-            Rotacion = (float)-MathHelper.PiOver4;//0.0f;
+            Rotacion = 0.0f;
         }
     }
 }

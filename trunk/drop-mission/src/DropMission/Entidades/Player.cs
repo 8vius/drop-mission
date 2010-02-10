@@ -149,6 +149,8 @@ namespace DropMission.Entidades
             currentFrame = 0;
             timer = 0f;
             sourceRect = new Rectangle(currentFrame * spriteWidth, sourceRect.Y, spriteWidth, spriteHeight);
+
+            arma.RectanguloFuente = new Rectangle(0, sourceRect.Y, arma.SpriteWidth, arma.SpriteHeight);
         }
 
         public void CalcularTimer(GameTime gameTime)

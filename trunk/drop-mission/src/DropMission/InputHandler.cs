@@ -105,8 +105,10 @@ namespace DropMission
                 player.Disparar();
             }
 
-            if ((keyboard.HasReleasedKey(Keys.Right) ||
-                (keyboard.HasReleasedKey(Keys.Left))))
+            if (keyboard.HasReleasedKey(Keys.Right) ||
+                keyboard.HasReleasedKey(Keys.Left) ||
+                keyboard.HasReleasedKey(Keys.Up) ||
+                keyboard.HasReleasedKey(Keys.Down))
             {
                 player.Reset();
             }
