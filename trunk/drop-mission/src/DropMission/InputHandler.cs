@@ -73,7 +73,7 @@ namespace DropMission
             }
 
             if ((keyboard.WasKeyPressed(Keys.Space))
-                || player.Status.Equals("SALTO"))
+                || player.Status == estadoPlayer.Saltando)
             {
                 player.Saltar();
             }

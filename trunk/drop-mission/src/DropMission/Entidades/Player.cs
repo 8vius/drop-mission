@@ -14,6 +14,9 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace DropMission.Entidades
 {
+    public enum estadoPlayer
+    { Caminando, Saltando }
+
     public class Player
     {
         #region Atributos para animacion
@@ -121,12 +124,14 @@ namespace DropMission.Entidades
         }
         #endregion
 
-        public string Status = "";
+        
+        public estadoPlayer Status;
 
         #region Constructor
 
         public Player()
         {
+            this.Status = estadoPlayer.Caminando;
             arma = new Weapon();
             destinationRect = new Rectangle(100, 450, spriteWidth, spriteHeight);
             posicionXanterior = 100;
@@ -190,7 +195,7 @@ namespace DropMission.Entidades
 
         public void Saltar()
         {
-            Status = "SALTO";
+            Status = estadoPlayer.Saltando;
             tiempoDeSalto += 1;
             PosicionY = int.Parse(Math.Truncate(PosicionY - 1.5f * tiempoDeSalto
                                 + (0.1f * Math.Pow(tiempoDeSalto,2)) / 2).ToString());
@@ -213,7 +218,7 @@ namespace DropMission.Entidades
             //Aqui deberia ser colisionando con el piso pero por ahora
             if (PosicionY >= 450)
             {
-                Status = "";
+                Status = estadoPlayer.Caminando;
                 tiempoDeSalto = 0;
                 PosicionY = 450;
             }
@@ -239,12 +244,12 @@ namespace DropMission.Entidades
         public void Draw(SpriteBatch spriteBatch)
         {
 
-            if (this.Status.Equals(""))
+            if (this.Status == estadoPlayer.Caminando)
             {
                 spriteBatch.Draw(this.SpriteCaminar, this.RectanguloDestino, this.RectanguloFuente, Color.White);
                 spriteBatch.Draw(this.arma.SpriteArma, this.arma.RectanguloDestino, this.arma.RectanguloFuente, Color.White);
             }
-            if (this.Status.Equals("SALTO"))
+            if (this.Status == estadoPlayer.Saltando)
             {
                 spriteBatch.Draw(this.SpriteSaltar, this.RectanguloDestino, this.RectanguloFuente, Color.White);
             }
