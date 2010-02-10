@@ -26,6 +26,6 @@ Traten de crear un proyecto nuevo de XNA 3.1 y en las opciones de proyectos sale
 
 Si no les sale en la lista entren en (en mi caso es asi):
 
-C: -> Program files -> Microsoft XNA -> XNA Game Studio -> V3.1 -> Setup
+*_C: -> Program files -> Microsoft XNA -> XNA Game Studio -> V3.1 -> Setup_*
 
 y corran el instalador que se llama platformer.msi y ya les deberia salir en la lista.
