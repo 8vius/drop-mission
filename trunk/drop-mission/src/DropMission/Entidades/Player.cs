@@ -66,6 +66,7 @@ namespace DropMission.Entidades
             set
             {
                 destinationRect.Y = value;
+                arma.PosicionY = value;
             }
         }
 
@@ -254,6 +255,7 @@ namespace DropMission.Entidades
             if (this.Status == estadoPlayer.Saltando)
             {
                 spriteBatch.Draw(this.SpriteSaltar, this.RectanguloDestino, this.RectanguloFuente, Color.White);
+                spriteBatch.Draw(this.arma.SpriteArma, this.arma.RectanguloDestino, this.arma.RectanguloFuente, Color.White);
             }
 
             foreach (Bala bala in this.arma.Balas)
