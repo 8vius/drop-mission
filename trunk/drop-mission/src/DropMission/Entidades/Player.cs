@@ -26,12 +26,10 @@ namespace DropMission.Entidades
 
         private const int spriteWidth = 150;
         private const int spriteHeight = 100;
-
         private float timer = 0f;
-        private float interval = 1000f / 15f;
-        private int frameCount = 4;
         private int currentFrame = 0;
-        
+        private int frameCount = 5;
+        private float interval = 1000 / 15;
         private Rectangle sourceRect;
         private Rectangle destinationRect;
         private Texture2D spriteSheetWalk;
@@ -136,7 +134,7 @@ namespace DropMission.Entidades
         {
             this.Status = estadoPlayer.Caminando;
             arma = new Weapon();
-            destinationRect = new Rectangle(100, 450, spriteWidth, spriteHeight);
+            destinationRect = new Rectangle(100, 450, (int)SpritePlayer.width, (int)SpritePlayer.height);
             posicionXanterior = 100;
         }
 
