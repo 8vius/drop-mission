@@ -265,7 +265,7 @@ namespace DropMission.Entidades
                     arma.Rotacion = (float)MathHelper.Pi;
                     break;
                 case 5:
-                    arma.Rotacion = (float)MathHelper.Pi + MathHelper.PiOver4;
+                    arma.Rotacion = (float)MathHelper.Pi - MathHelper.PiOver4;
                     arma.RectanguloFuente = new Rectangle(300,
                                                           100,
                                                           arma.SpriteWidth,
