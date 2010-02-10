@@ -30,3 +30,11 @@ Si no les sale en la lista entren en (en mi caso es asi):
 *_C: -> Program files -> Microsoft XNA -> XNA Game Studio -> V3.1 -> Setup_*
 
 y corran el instalador que se llama platformer.msi y ya les deberia salir en la lista.
+
+----
+
+*VIDEOS*
+
+Aqui consegui un codigo de ejemplo de como funciona el correr videos en XNA. Al parecer es algo nuevo en XNA 3.1 (menos mal), y esto nos puede servir para lo del inicio, cuando salen los logos de los creadores, o para ponernos fancy y colocar videitos in-game. Aqui les pongo el link para ver si lo usamos luego.
+
+http://klucher.com/blog/video-support-in-xna-game-studio-3-1/
