@@ -226,10 +226,9 @@ namespace DropMission.Entidades
                 if (!bala.Vivo)
                 {
                     bala.Vivo = true;
-                    bala.Posicion = new Vector2(arma.PosicionX - bala.Posicion.X / 2, 
-                                                    arma.PosicionY - bala.Posicion.Y / 2);
+                    bala.Posicion = new Vector2(arma.PosicionX + 130, arma.PosicionY + 50);
                     bala.Velocidad = new Vector2((float)Math.Cos(arma.Rotacion),
-                                                    (float)Math.Sin(arma.Rotacion)) * 0.5f;
+                                                    (float)Math.Sin(arma.Rotacion)) * 13.0f;
                     return;
                 }
             }

@@ -100,6 +100,17 @@ namespace DropMission
             // TODO: Add your update logic here
             player1.CalcularTimer(gameTime);
 
+            //para probar
+            foreach (Bala bala in player1.arma.Balas)
+            {
+                if (bala.Vivo)
+                {
+                    bala.Mover();
+                }
+            
+            }
+
+
             base.Update(gameTime);
         }
 
@@ -130,8 +141,7 @@ namespace DropMission
                 if (bala.Vivo)
                 {
                     spriteBatch.Draw(bala.SpriteBala,
-                                     bala.RectanguloDestino,
-                                     bala.RectanguloFuente,
+                                     bala.Posicion,
                                      Color.White);
                 }
             }

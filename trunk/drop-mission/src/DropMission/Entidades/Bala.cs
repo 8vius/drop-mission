@@ -38,7 +38,12 @@ namespace DropMission.Entidades
         public Vector2 Posicion
         {
             get { return posicion; }
-            set { posicion = value; }
+            set 
+            {
+                posicion = value;
+                destinationRect.X = int.Parse(Math.Truncate(posicion.X).ToString());
+                destinationRect.Y = int.Parse(Math.Truncate(posicion.Y).ToString());
+            }
         }
         public Vector2 Velocidad
         {
@@ -109,6 +114,11 @@ namespace DropMission.Entidades
             Velocidad = Vector2.Zero;
             Vivo = false;
             
+        }
+
+        public void Mover()
+        {
+            posicion.X += velocity.X;
         }
     }
 }

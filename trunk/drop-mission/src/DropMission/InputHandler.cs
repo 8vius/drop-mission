@@ -78,7 +78,7 @@ namespace DropMission
                 player.Saltar();
             }
 
-            if (keyboard.IsKeyDown(Keys.F))
+            if (keyboard.WasKeyPressed(Keys.F))
             {
                 player.Disparar();
             }
