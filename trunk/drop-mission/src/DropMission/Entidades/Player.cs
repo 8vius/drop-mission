@@ -28,7 +28,7 @@ namespace DropMission.Entidades
         private const int spriteHeight = 100;
         private float timer = 0f;
         private int currentFrame = 0;
-        private int frameCount = 5;
+        private int frameCount = 4;
         private float interval = 1000 / 15;
         private Rectangle sourceRect;
         private Rectangle destinationRect;
