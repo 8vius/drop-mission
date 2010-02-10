@@ -15,3 +15,17 @@ http://www.xnafusion.com/xna-animated-sprite-tutorial-beginner/
 Este lo consegui ahorita, no lo he probado pero supuestamente es para que podamos hacer que el fondo vaya moviendose como queremos. 
 
 http://www.xnadevelopment.com/tutorials/scrollinga2dbackground/ScrollingA2DBackground.shtml
+
+
+
+*ELEMENTOS VARIOS*
+
+Acabo de conseguir algo que nos trae XNA 3.1 que nos puede ayudar mucho en cuando a el manejo de niveles, orden del codigo (mas o menos) o lo del manejo de colisiones con el piso o sus diferentes niveles de altura (importante).
+
+Traten de crear un proyecto nuevo de XNA 3.1 y en las opciones de proyectos sale (como ultima opcion en mi caso no se en la de uds) un icono que se llama "Platformer Game" o algo por el estilo. Es un demo de un jueguito plataforma bien chevere que nos puede ayudar mucho.
+
+Si no les sale en la lista entren en (en mi caso es asi):
+
+C: -> Program files -> Microsoft XNA -> XNA Game Studio -> V3.1 -> Setup
+
+y corran el instalador que se llama platformer.msi y ya les deberia salir en la lista.
