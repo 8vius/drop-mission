@@ -96,7 +96,8 @@ namespace DropMission
                 player.GirarArma(1);
             }
 
-            if ((keyboard.IsKeyDown(Keys.Up)) && (!keyboard.IsKeyDown(Keys.Right)))
+            if ((keyboard.IsKeyDown(Keys.Up)) && (!keyboard.IsKeyDown(Keys.Right)) && 
+                (!keyboard.IsKeyDown(Keys.Left)))
             {
                 player.GirarArma(2);
             } 
@@ -111,7 +112,8 @@ namespace DropMission
                 player.GirarArma(5);
             }
 
-            if (keyboard.IsKeyDown(Keys.Down))
+            if ((keyboard.IsKeyDown(Keys.Down)) && (!keyboard.IsKeyDown(Keys.Right)) &&
+                (!keyboard.IsKeyDown(Keys.Left)))
             {
                 player.GirarArma(6);
             }

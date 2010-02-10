@@ -247,6 +247,11 @@ namespace DropMission.Entidades
                                                           0,
                                                           arma.SpriteWidth,
                                                           arma.SpriteHeight);
+                    else
+                        arma.RectanguloFuente = new Rectangle(450,
+                                                          100,
+                                                          arma.SpriteWidth,
+                                                          arma.SpriteHeight);
 
                     break;
                 case 3:
@@ -268,6 +273,16 @@ namespace DropMission.Entidades
                     break;
                 case 6:
                     arma.Rotacion = (float)MathHelper.PiOver2;
+                    if (sourceRect.Y == 0)
+                        arma.RectanguloFuente = new Rectangle(600,
+                                                          0,
+                                                          arma.SpriteWidth,
+                                                          arma.SpriteHeight);
+                    else
+                        arma.RectanguloFuente = new Rectangle(600,
+                                                          100,
+                                                          arma.SpriteWidth,
+                                                          arma.SpriteHeight);
                     break;
                 case 7:
                     arma.Rotacion = (float)MathHelper.PiOver4;
