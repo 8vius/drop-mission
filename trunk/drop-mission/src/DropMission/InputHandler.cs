@@ -74,9 +74,11 @@ namespace DropMission
 
             if (keyboard.IsHoldingKey(Keys.Right))
             {
-                player.CaminarDerecha();
-                player.GirarArma(0);
-
+                if(!keyboard.IsHoldingKey(Keys.LeftShift))
+                {
+                    player.CaminarDerecha();
+                    player.GirarArma(0);
+                }
                 if(keyboard.IsHoldingKey(Keys.Up))
                     player.GirarArma(1);
                 if(keyboard.IsHoldingKey(Keys.Down))
