@@ -75,10 +75,10 @@ namespace DropMission
             if (keyboard.IsHoldingKey(Keys.Right))
             {
                 if(!keyboard.IsHoldingKey(Keys.LeftShift))
-                {
                     player.CaminarDerecha();
-                    player.GirarArma(0);
-                }
+
+                player.GirarArma(0);
+                
                 if(keyboard.IsHoldingKey(Keys.Up))
                     player.GirarArma(1);
                 if(keyboard.IsHoldingKey(Keys.Down))
@@ -87,7 +87,9 @@ namespace DropMission
 
             if (keyboard.IsKeyDown(Keys.Left))
             {
-                player.CaminarIzquierda();
+                if (!keyboard.IsHoldingKey(Keys.LeftShift))
+                    player.CaminarIzquierda();
+
                 player.GirarArma(4);
 
                 if (keyboard.IsHoldingKey(Keys.Up))

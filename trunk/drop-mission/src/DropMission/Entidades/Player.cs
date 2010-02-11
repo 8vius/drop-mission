@@ -127,6 +127,7 @@ namespace DropMission.Entidades
         #endregion
   
         public estadoPlayer Status;
+        private int direccionApuntado = 0;
 
         #region Constructor
 
@@ -229,6 +230,8 @@ namespace DropMission.Entidades
 
         public void GirarArma(int inclinacion)
         {
+            direccionApuntado = inclinacion;
+
             switch (inclinacion)
             {
 
@@ -303,9 +306,26 @@ namespace DropMission.Entidades
                 if (!bala.Vivo)
                 {
                     bala.Vivo = true;
-                    bala.Posicion = new Vector2(arma.PosicionX, arma.PosicionY);
-                    bala.Velocidad = new Vector2((float)Math.Cos(arma.Rotacion),
-                                                    (float)Math.Sin(arma.Rotacion)) * 13.0f;
+                    
+                    if (direccionApuntado == 0)//derecha
+                        bala.Posicion = new Vector2(arma.PosicionX + 135, arma.PosicionY + 50);
+                    if (direccionApuntado == 1)//derecha-arriba
+                        bala.Posicion = new Vector2(arma.PosicionX + 120, arma.PosicionY);
+                    if (direccionApuntado == 2)//arriba
+                        bala.Posicion = new Vector2(arma.PosicionX + 70, arma.PosicionY - 10);
+                    if (direccionApuntado == 3)//izquierda-arriba
+                        bala.Posicion = new Vector2(arma.PosicionX + 15, arma.PosicionY);
+                    if (direccionApuntado == 4)//izquierda
+                        bala.Posicion = new Vector2(arma.PosicionX, arma.PosicionY + 50);
+                    if (direccionApuntado == 5)//izquierda-abajo
+                        bala.Posicion = new Vector2(arma.PosicionX + 15, arma.PosicionY + 85);
+                    if (direccionApuntado == 6)//abajo
+                        bala.Posicion = new Vector2(arma.PosicionX + 75, arma.PosicionY + 100);
+                    if (direccionApuntado == 7)//derecha-abajo
+                        bala.Posicion = new Vector2(arma.PosicionX + 115, arma.PosicionY + 90);
+                    
+                    bala.Velocidad = new Vector2((float)Math.Cos(arma.Rotacion),(float)Math.Sin(arma.Rotacion)) * 13.0f;
+
                     return;
                 }
             }
