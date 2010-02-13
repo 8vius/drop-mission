@@ -14,6 +14,18 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace DropMission.Entidades
 {
+    public enum posicionArma
+    {
+        Derecha,
+        Izquierda,
+        Arriba,
+        Abajo,
+        ArribaDerecha,
+        ArribaIzquierda,
+        AbajoDerecha,
+        AbajoIzquierda
+    };
+
     public class Weapon
     {
         #region Atributos para animacion
@@ -136,5 +148,79 @@ namespace DropMission.Entidades
             destinationRect = new Rectangle(100, 450, spriteWidth, spriteHeight);
             Rotacion = 0.0f;
         }
+
+        #region Metodos
+
+        public void Rotar(posicionArma inclinacion, Rectangle Rect)
+        {
+            switch (inclinacion)
+            {
+
+                case posicionArma.Derecha:
+                    Rotacion = 0.0f;
+                    break;
+                case posicionArma.ArribaDerecha:
+                    Rotacion = (float)-MathHelper.PiOver4;
+                    RectanguloFuente = new Rectangle(150,
+                                                     0,
+                                                     SpriteWidth,
+                                                     SpriteHeight);
+                    break;
+                case posicionArma.Arriba:
+                    Rotacion = (float)-MathHelper.PiOver2;
+                    if (Rect.Y == 0)
+                        RectanguloFuente = new Rectangle(450,
+                                                         0,
+                                                         SpriteWidth,
+                                                         SpriteHeight);
+                    else
+                        RectanguloFuente = new Rectangle(450,
+                                                         100,
+                                                         SpriteWidth,
+                                                         SpriteHeight);
+
+                    break;
+                case posicionArma.ArribaIzquierda:
+                    Rotacion = (float)-(MathHelper.PiOver2 + MathHelper.PiOver4);
+                    RectanguloFuente = new Rectangle(150,
+                                                     100,
+                                                     SpriteWidth,
+                                                     SpriteHeight);
+                    break;
+                case posicionArma.Izquierda:
+                    Rotacion = (float)MathHelper.Pi;
+                    break;
+                case posicionArma.AbajoIzquierda:
+                    Rotacion = (float)MathHelper.Pi - MathHelper.PiOver4;
+                    RectanguloFuente = new Rectangle(300,
+                                                     100,
+                                                     SpriteWidth,
+                                                     SpriteHeight);
+                    break;
+                case posicionArma.Abajo:
+                    Rotacion = (float)MathHelper.PiOver2;
+                    if (Rect.Y == 0)
+                        RectanguloFuente = new Rectangle(600,
+                                                         0,
+                                                         SpriteWidth,
+                                                         SpriteHeight);
+                    else
+                        RectanguloFuente = new Rectangle(600,
+                                                          100,
+                                                          SpriteWidth,
+                                                          SpriteHeight);
+                    break;
+                case posicionArma.AbajoDerecha:
+                    Rotacion = (float)MathHelper.PiOver4;
+                    RectanguloFuente = new Rectangle(300,
+                                                     0,
+                                                     SpriteWidth,
+                                                     SpriteHeight);
+                    break;
+            }
+ 
+        }
+
+        #endregion
     }
 }

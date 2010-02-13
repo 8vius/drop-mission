@@ -64,12 +64,12 @@ namespace DropMission
 
             if (keyboard.IsKeyDown(Keys.Up))
             {
-                player.GirarArma(2);
+                player.GirarArma(posicionArma.Arriba);
             }
 
             if (keyboard.IsKeyDown(Keys.Down))
             {
-                player.GirarArma(6);
+                player.GirarArma(posicionArma.Abajo);
             }
 
             if (keyboard.IsHoldingKey(Keys.Right))
@@ -77,12 +77,12 @@ namespace DropMission
                 if(!keyboard.IsHoldingKey(Keys.LeftShift))
                     player.CaminarDerecha();
 
-                player.GirarArma(0);
+                player.GirarArma(posicionArma.Derecha);
                 
                 if(keyboard.IsHoldingKey(Keys.Up))
-                    player.GirarArma(1);
+                    player.GirarArma(posicionArma.ArribaDerecha);
                 if(keyboard.IsHoldingKey(Keys.Down))
-                    player.GirarArma(7);
+                    player.GirarArma(posicionArma.AbajoDerecha);
             }
 
             if (keyboard.IsKeyDown(Keys.Left))
@@ -90,12 +90,12 @@ namespace DropMission
                 if (!keyboard.IsHoldingKey(Keys.LeftShift))
                     player.CaminarIzquierda();
 
-                player.GirarArma(4);
+                player.GirarArma(posicionArma.Izquierda);
 
                 if (keyboard.IsHoldingKey(Keys.Up))
-                    player.GirarArma(3);
+                    player.GirarArma(posicionArma.ArribaIzquierda);
                 if (keyboard.IsHoldingKey(Keys.Down))
-                    player.GirarArma(5);
+                    player.GirarArma(posicionArma.AbajoIzquierda);
             }
 
             if ((keyboard.WasKeyPressed(Keys.Space))

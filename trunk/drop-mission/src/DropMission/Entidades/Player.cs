@@ -127,7 +127,7 @@ namespace DropMission.Entidades
         #endregion
   
         public estadoPlayer Status;
-        private int direccionApuntado = 0;
+        private posicionArma direccionApuntado = posicionArma.Derecha;
 
         #region Constructor
 
@@ -228,75 +228,11 @@ namespace DropMission.Entidades
             }
         }
 
-        public void GirarArma(int inclinacion)
+        public void GirarArma(posicionArma inclinacion)
         {
             direccionApuntado = inclinacion;
 
-            switch (inclinacion)
-            {
-
-                case 0:
-                    arma.Rotacion = 0.0f;
-                    break;
-                case 1:
-                    arma.Rotacion = (float)-MathHelper.PiOver4;
-                    arma.RectanguloFuente = new Rectangle(150, 
-                                                          0, 
-                                                          arma.SpriteWidth, 
-                                                          arma.SpriteHeight);
-                    break;
-                case 2:
-                    arma.Rotacion = (float)-MathHelper.PiOver2;
-                    if (sourceRect.Y == 0)
-                        arma.RectanguloFuente = new Rectangle(450,
-                                                          0,
-                                                          arma.SpriteWidth,
-                                                          arma.SpriteHeight);
-                    else
-                        arma.RectanguloFuente = new Rectangle(450,
-                                                          100,
-                                                          arma.SpriteWidth,
-                                                          arma.SpriteHeight);
-
-                    break;
-                case 3:
-                    arma.Rotacion = (float)-(MathHelper.PiOver2 + MathHelper.PiOver4);
-                    arma.RectanguloFuente = new Rectangle(150,
-                                                          100,
-                                                          arma.SpriteWidth,
-                                                          arma.SpriteHeight);
-                    break;
-                case 4:
-                    arma.Rotacion = (float)MathHelper.Pi;
-                    break;
-                case 5:
-                    arma.Rotacion = (float)MathHelper.Pi - MathHelper.PiOver4;
-                    arma.RectanguloFuente = new Rectangle(300,
-                                                          100,
-                                                          arma.SpriteWidth,
-                                                          arma.SpriteHeight);
-                    break;
-                case 6:
-                    arma.Rotacion = (float)MathHelper.PiOver2;
-                    if (sourceRect.Y == 0)
-                        arma.RectanguloFuente = new Rectangle(600,
-                                                          0,
-                                                          arma.SpriteWidth,
-                                                          arma.SpriteHeight);
-                    else
-                        arma.RectanguloFuente = new Rectangle(600,
-                                                          100,
-                                                          arma.SpriteWidth,
-                                                          arma.SpriteHeight);
-                    break;
-                case 7:
-                    arma.Rotacion = (float)MathHelper.PiOver4;
-                    arma.RectanguloFuente = new Rectangle(300,
-                                                          0,
-                                                          arma.SpriteWidth,
-                                                          arma.SpriteHeight);
-                    break;
-            }
+            arma.Rotar(inclinacion,sourceRect);
         }
 
         public void Disparar()
@@ -307,21 +243,21 @@ namespace DropMission.Entidades
                 {
                     bala.Vivo = true;
                     
-                    if (direccionApuntado == 0)//derecha
+                    if (direccionApuntado == posicionArma.Derecha)//derecha
                         bala.Posicion = new Vector2(arma.PosicionX + 135, arma.PosicionY + 50);
-                    if (direccionApuntado == 1)//derecha-arriba
+                    if (direccionApuntado == posicionArma.ArribaDerecha)//derecha-arriba
                         bala.Posicion = new Vector2(arma.PosicionX + 120, arma.PosicionY);
-                    if (direccionApuntado == 2)//arriba
+                    if (direccionApuntado == posicionArma.Arriba)//arriba
                         bala.Posicion = new Vector2(arma.PosicionX + 70, arma.PosicionY - 10);
-                    if (direccionApuntado == 3)//izquierda-arriba
+                    if (direccionApuntado == posicionArma.ArribaIzquierda)//izquierda-arriba
                         bala.Posicion = new Vector2(arma.PosicionX + 15, arma.PosicionY);
-                    if (direccionApuntado == 4)//izquierda
+                    if (direccionApuntado == posicionArma.Izquierda)//izquierda
                         bala.Posicion = new Vector2(arma.PosicionX, arma.PosicionY + 50);
-                    if (direccionApuntado == 5)//izquierda-abajo
+                    if (direccionApuntado == posicionArma.AbajoIzquierda)//izquierda-abajo
                         bala.Posicion = new Vector2(arma.PosicionX + 15, arma.PosicionY + 85);
-                    if (direccionApuntado == 6)//abajo
+                    if (direccionApuntado == posicionArma.Abajo)//abajo
                         bala.Posicion = new Vector2(arma.PosicionX + 75, arma.PosicionY + 100);
-                    if (direccionApuntado == 7)//derecha-abajo
+                    if (direccionApuntado == posicionArma.AbajoDerecha)//derecha-abajo
                         bala.Posicion = new Vector2(arma.PosicionX + 115, arma.PosicionY + 90);
                     
                     bala.Velocidad = new Vector2((float)Math.Cos(arma.Rotacion),(float)Math.Sin(arma.Rotacion)) * 13.0f;
