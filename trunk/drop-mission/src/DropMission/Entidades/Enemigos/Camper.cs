@@ -103,6 +103,7 @@ namespace DropMission.Entidades.Enemigos
             destinationRect = new Rectangle(X, Y, spriteWidth, spriteHeight);
             sourceRect = new Rectangle(0, 100, spriteWidth, spriteHeight);
             arma = new Weapon(destinationRect);
+            arma.RectanguloFuente = new Rectangle(0,100,arma.SpriteWidth,arma.SpriteHeight);
            
 
         }
@@ -123,6 +124,10 @@ namespace DropMission.Entidades.Enemigos
             spriteBatch.Draw(this.SpritePosicion,
                              this.RectanguloDestino,
                              this.RectanguloFuente,
+                             Color.White);
+            spriteBatch.Draw(this.arma.SpriteArma, 
+                             this.arma.RectanguloDestino, 
+                             this.arma.RectanguloFuente, 
                              Color.White);
 
 
