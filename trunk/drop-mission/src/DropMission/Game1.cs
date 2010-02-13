@@ -125,8 +125,7 @@ namespace DropMission
             kamikazePrueba1.CaminarIzquierda();
             kamikazePrueba2.CaminarDerecha();
 
-            kamikazePrueba2.s
-
+    
 
             base.Update(gameTime);
         }
