@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entidades\Bala.cs" />
+    <Compile Include="Entidades\Enemigos\Kamikaze.cs" />
     <Compile Include="Entidades\Weapon.cs" />
     <Compile Include="Entidades\Player.cs" />
     <Compile Include="IInputHandler.cs" />

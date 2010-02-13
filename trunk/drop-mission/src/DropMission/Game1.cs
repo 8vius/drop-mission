@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 using DropMission.Entidades;
+using DropMission.Entidades.Enemigos;
 
 namespace DropMission
 {
@@ -23,6 +24,9 @@ namespace DropMission
         SpriteBatch spriteBatch;
         KeyboardState previousKeyboardState = Keyboard.GetState();
         Player player1;
+        Kamikaze kamikazePrueba1, kamikazePrueba2;
+
+
         private InputHandler input;
 
         public Game1()
@@ -31,6 +35,8 @@ namespace DropMission
             Content.RootDirectory = "Content";
 
             player1 = new Player();
+            kamikazePrueba1 = new Kamikaze(posicionKamikaze.Derecha);
+            kamikazePrueba2 = new Kamikaze(posicionKamikaze.Izquierda);
 
             input = new InputHandler(this, player1);
             Components.Add(input);
@@ -73,6 +79,8 @@ namespace DropMission
 
             player1.arma.Balas = balas;
 
+            kamikazePrueba1.SpriteCaminar = Content.Load<Texture2D>("Sprites//Enemy//KamikazeWalk");
+            kamikazePrueba2.SpriteCaminar = Content.Load<Texture2D>("Sprites//Enemy//KamikazeWalk");
             
         }
 
@@ -99,6 +107,10 @@ namespace DropMission
             // TODO: Add your update logic here
             player1.CalcularTimer(gameTime);
 
+            //Timer Kamikaze
+            kamikazePrueba1.CalcularTimer(gameTime);
+            kamikazePrueba2.CalcularTimer(gameTime);
+
             //para probar
             foreach (Bala bala in player1.arma.Balas)
             {
@@ -108,6 +120,12 @@ namespace DropMission
                 }
             
             }
+
+            //Prueba de movimiento de kamikaze
+            kamikazePrueba1.CaminarIzquierda();
+            kamikazePrueba2.CaminarDerecha();
+
+            kamikazePrueba2.s
 
 
             base.Update(gameTime);
@@ -126,6 +144,10 @@ namespace DropMission
             spriteBatch.Begin();
 
             player1.Draw(spriteBatch);
+
+            //Prueba Kamikaze
+            kamikazePrueba1.Draw(spriteBatch);
+            kamikazePrueba2.Draw(spriteBatch);
 
             spriteBatch.End();
 
