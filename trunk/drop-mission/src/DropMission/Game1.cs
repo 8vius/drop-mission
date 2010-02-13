@@ -91,6 +91,7 @@ namespace DropMission
             
             //Load de sprite de camper
             CamperPrueba.SpritePosicion = Content.Load<Texture2D>("Sprites//Enemy//TerroristCamper");
+            CamperPrueba.arma.SpriteArma = Content.Load<Texture2D>("Sprites//Weapon//AK");
         }
 
         /// <summary>
