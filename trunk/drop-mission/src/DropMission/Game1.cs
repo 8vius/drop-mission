@@ -25,6 +25,7 @@ namespace DropMission
         KeyboardState previousKeyboardState = Keyboard.GetState();
         Player player1;
         Kamikaze kamikazePrueba1, kamikazePrueba2;
+        Camper CamperPrueba;
 
 
         private InputHandler input;
@@ -35,8 +36,13 @@ namespace DropMission
             Content.RootDirectory = "Content";
 
             player1 = new Player();
+
+            //Kamikazes de prueba
             kamikazePrueba1 = new Kamikaze(posicionKamikaze.Derecha);
             kamikazePrueba2 = new Kamikaze(posicionKamikaze.Izquierda);
+
+            //Camper de prueba
+            CamperPrueba = new Camper(400,300);
 
             input = new InputHandler(this, player1);
             Components.Add(input);
@@ -79,9 +85,12 @@ namespace DropMission
 
             player1.arma.Balas = balas;
 
+            //Load de sprites de kamikazes
             kamikazePrueba1.SpriteCaminar = Content.Load<Texture2D>("Sprites//Enemy//KamikazeWalk");
             kamikazePrueba2.SpriteCaminar = Content.Load<Texture2D>("Sprites//Enemy//KamikazeWalk");
             
+            //Load de sprite de camper
+            CamperPrueba.SpritePosicion = Content.Load<Texture2D>("Sprites//Enemy//TerroristCamper");
         }
 
         /// <summary>
@@ -111,6 +120,9 @@ namespace DropMission
             kamikazePrueba1.CalcularTimer(gameTime);
             kamikazePrueba2.CalcularTimer(gameTime);
 
+            //Timer Camper
+            CamperPrueba.CalcularTimer(gameTime);
+
             //para probar
             foreach (Bala bala in player1.arma.Balas)
             {
@@ -124,6 +136,8 @@ namespace DropMission
             //Prueba de movimiento de kamikaze
             kamikazePrueba1.CaminarIzquierda();
             kamikazePrueba2.CaminarDerecha();
+
+
 
     
 
@@ -147,6 +161,9 @@ namespace DropMission
             //Prueba Kamikaze
             kamikazePrueba1.Draw(spriteBatch);
             kamikazePrueba2.Draw(spriteBatch);
+
+            //Prueba Camper
+            CamperPrueba.Draw(spriteBatch);
 
             spriteBatch.End();
 
