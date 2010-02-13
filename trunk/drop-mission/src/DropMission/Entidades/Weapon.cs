@@ -143,9 +143,9 @@ namespace DropMission.Entidades
         }
         #endregion
 
-        public Weapon()
+        public Weapon(Rectangle Rect)
         {
-            destinationRect = new Rectangle(100, 450, spriteWidth, spriteHeight);
+            destinationRect = new Rectangle(Rect.X, Rect.Y, spriteWidth, spriteHeight);
             Rotacion = 0.0f;
         }
 

@@ -134,9 +134,10 @@ namespace DropMission.Entidades
         public Player()
         {
             this.Status = estadoPlayer.Caminando;
-            arma = new Weapon();
+           
             destinationRect = new Rectangle(100, 450, spriteWidth, spriteHeight);
             posicionXanterior = 100;
+            arma = new Weapon(destinationRect);
         }
 
         #endregion

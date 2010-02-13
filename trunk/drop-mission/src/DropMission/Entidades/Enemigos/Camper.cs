@@ -102,7 +102,7 @@ namespace DropMission.Entidades.Enemigos
             vivo = true;
             destinationRect = new Rectangle(X, Y, spriteWidth, spriteHeight);
             sourceRect = new Rectangle(0, 100, spriteWidth, spriteHeight);
-            arma = new Weapon();
+            arma = new Weapon(destinationRect);
            
 
         }
