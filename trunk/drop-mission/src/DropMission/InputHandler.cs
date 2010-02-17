@@ -106,7 +106,7 @@ namespace DropMission
 
             if (keyboard.IsKeyDown(Keys.F))
             {
-                player.Disparar();
+                player.Disparar(gameTime);
             }
 
             if (keyboard.HasReleasedKey(Keys.Right) ||

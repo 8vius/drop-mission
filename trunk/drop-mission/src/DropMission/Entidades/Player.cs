@@ -125,7 +125,10 @@ namespace DropMission.Entidades
             }
         }
         #endregion
-  
+
+        int elapsedTime = 0;
+        bool delay = true;
+
         public estadoPlayer Status;
         private posicionArma direccionApuntado = posicionArma.Derecha;
 
@@ -236,11 +239,19 @@ namespace DropMission.Entidades
             arma.Rotar(inclinacion,sourceRect);
         }
 
-        public void Disparar()
+        public void Disparar(GameTime gameTime)
         {
+
+            elapsedTime += gameTime.ElapsedGameTime.Milliseconds;
+            if(elapsedTime >= 100)
+            {
+                delay = true;
+                elapsedTime = 0;
+            }
+      
             foreach (Bala bala in arma.Balas)
             {
-                if (!bala.Vivo)
+                if (!bala.Vivo && delay)
                 {
                     bala.Vivo = true;
                     
@@ -262,7 +273,8 @@ namespace DropMission.Entidades
                         bala.Posicion = new Vector2(arma.PosicionX + 115, arma.PosicionY + 90);
                     
                     bala.Velocidad = new Vector2((float)Math.Cos(arma.Rotacion),(float)Math.Sin(arma.Rotacion)) * 13.0f;
-
+                    delay = false;
+                    
                     return;
                 }
             }
