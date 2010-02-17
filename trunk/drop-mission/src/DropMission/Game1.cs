@@ -27,6 +27,8 @@ namespace DropMission
         Kamikaze kamikazePrueba1, kamikazePrueba2;
         Camper CamperPrueba;
 
+        Texture2D backgroundTexture;
+        Rectangle viewportRect;
 
         private InputHandler input;
 
@@ -57,7 +59,11 @@ namespace DropMission
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            
+
+            //Preparando un viewportRect para el fondo
+            viewportRect = new Rectangle(0, 0, graphics.GraphicsDevice.Viewport.Width,
+                                              graphics.GraphicsDevice.Viewport.Height);
+
             base.Initialize();
         }
 
@@ -92,6 +98,10 @@ namespace DropMission
             //Load de sprite de camper
             CamperPrueba.SpritePosicion = Content.Load<Texture2D>("Sprites//Enemy//TerroristCamper");
             CamperPrueba.arma.SpriteArma = Content.Load<Texture2D>("Sprites//Weapon//AK");
+
+            //Load del fondo de prueba
+            backgroundTexture = Content.Load<Texture2D>("Sprites\\bg1");
+
         }
 
         /// <summary>
@@ -156,6 +166,9 @@ namespace DropMission
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
+
+            spriteBatch.Draw(backgroundTexture, viewportRect,
+                Color.White);
 
             player1.Draw(spriteBatch);
 

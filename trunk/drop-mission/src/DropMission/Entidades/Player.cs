@@ -135,7 +135,7 @@ namespace DropMission.Entidades
         {
             this.Status = estadoPlayer.Caminando;
            
-            destinationRect = new Rectangle(100, 450, spriteWidth, spriteHeight);
+            destinationRect = new Rectangle(100, 480, spriteWidth, spriteHeight);
             posicionXanterior = 100;
             arma = new Weapon(destinationRect);
         }
@@ -221,11 +221,11 @@ namespace DropMission.Entidades
                 sourceRect = new Rectangle(currentFrame * spriteWidth, 100, spriteWidth, spriteHeight);
 
             //Aqui deberia ser colisionando con el piso pero por ahora
-            if (PosicionY >= 450)
+            if (PosicionY >= 480)
             {
                 Status = estadoPlayer.Caminando;
                 tiempoDeSalto = 0;
-                PosicionY = 450;
+                PosicionY = 480;
             }
         }
 
