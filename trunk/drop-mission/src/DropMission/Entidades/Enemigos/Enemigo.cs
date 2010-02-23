@@ -12,16 +12,9 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-
 namespace DropMission.Entidades.Enemigos
 {
-    public enum miradaCamper
-    {
-        Izquierda,
-        Derecha
-    };
-
-    public class Camper : Enemigo
+    public class Enemigo
     {
         #region Atributos para animacion
 
@@ -37,8 +30,6 @@ namespace DropMission.Entidades.Enemigos
         private Texture2D spriteSheetExplode;
 
         private bool vivo;
-
-        private miradaCamper Mirada;
 
         #endregion
 
@@ -58,7 +49,6 @@ namespace DropMission.Entidades.Enemigos
 
 
         #endregion
-
 
         #region Propiedades
 
@@ -90,49 +80,8 @@ namespace DropMission.Entidades.Enemigos
 
         #endregion
 
-        #region Gadgets
-
-        public Weapon arma;
-
-        #endregion
-
-        public Camper(int X, int Y)
-        {
-            Mirada = miradaCamper.Izquierda;
-            vivo = true;
-            destinationRect = new Rectangle(X, Y, spriteWidth, spriteHeight);
-            sourceRect = new Rectangle(0, 100, spriteWidth, spriteHeight);
-            arma = new Weapon(destinationRect);
-            arma.RectanguloFuente = new Rectangle(0,100,arma.SpriteWidth,arma.SpriteHeight);
-           
-
-        }
-
-        #region Metodos
-
-        public void CalcularTimer(GameTime gameTime)
-        {
-            timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-        }
-        public void Girar()
-        { }
-        public void Disparar()
-        { }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(this.SpritePosicion,
-                             this.RectanguloDestino,
-                             this.RectanguloFuente,
-                             Color.White);
-            spriteBatch.Draw(this.arma.SpriteArma, 
-                             this.arma.RectanguloDestino, 
-                             this.arma.RectanguloFuente, 
-                             Color.White);
-
-
-        }
-        #endregion
+        public Enemigo()
+        {}
 
     }
 }

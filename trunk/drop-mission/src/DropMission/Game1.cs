@@ -26,6 +26,7 @@ namespace DropMission
         Player player1;
         Kamikaze kamikazePrueba1, kamikazePrueba2;
         Camper CamperPrueba;
+        List<Enemigo> enemigos;
 
         Texture2D backgroundTexture;
         Rectangle viewportRect;
@@ -37,14 +38,21 @@ namespace DropMission
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
+            enemigos = new List<Enemigo>();
+
             player1 = new Player();
 
             //Kamikazes de prueba
             kamikazePrueba1 = new Kamikaze(posicionKamikaze.Derecha);
             kamikazePrueba2 = new Kamikaze(posicionKamikaze.Izquierda);
 
+            enemigos.Add(kamikazePrueba1);
+            enemigos.Add(kamikazePrueba2);
+
             //Camper de prueba
             CamperPrueba = new Camper(400,300);
+
+            enemigos.Add(CamperPrueba);
 
             input = new InputHandler(this, player1);
             Components.Add(input);
@@ -141,6 +149,14 @@ namespace DropMission
                 {
                     bala.Mover();
                 }
+
+                foreach (Enemigo enemigo in enemigos)
+                {
+                   if (bala.RectanguloDestino.Intersects(bala.RectanguloDestino))
+                   {
+                       enemigo.Vivo = false;
+                   }
+                }
             
             }
 
@@ -173,11 +189,14 @@ namespace DropMission
             player1.Draw(spriteBatch);
 
             //Prueba Kamikaze
-            kamikazePrueba1.Draw(spriteBatch);
-            kamikazePrueba2.Draw(spriteBatch);
+            if (kamikazePrueba1.Vivo == true)
+                kamikazePrueba1.Draw(spriteBatch);
+            if (kamikazePrueba2.Vivo == true)
+                kamikazePrueba2.Draw(spriteBatch);
 
             //Prueba Camper
-            CamperPrueba.Draw(spriteBatch);
+            if (CamperPrueba.Vivo == true)
+                CamperPrueba.Draw(spriteBatch);
 
             spriteBatch.End();
 

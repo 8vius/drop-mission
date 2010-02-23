@@ -26,7 +26,7 @@ namespace DropMission.Entidades.Enemigos
         Derecha
     };
 
-    public class Kamikaze 
+    public class Kamikaze : Enemigo
     {
         #region Atributos para animacion
 
