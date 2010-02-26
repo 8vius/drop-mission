@@ -155,7 +155,7 @@ namespace DropMission.ScreensManager
             color = new Color(color, ScreenAlpha);
 
             float pulse = (float)(Math.Sin(gameTime.TotalGameTime.TotalSeconds * 3) + 1);
-            float scale = isSelected ? (1 + pulse * 0.05f) : 0.5f;
+            float scale = isSelected ? (1 + pulse * 0.05f) : 1f;
 
             spriteBatch.DrawString(spriteFont, entry, position, color, 0, origin, scale, SpriteEffects.None,
                 0);
