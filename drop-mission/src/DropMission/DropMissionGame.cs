@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 using DropMission.ScreensManager;
-using DropMission.Screens;
+using DropMission.Screens.Menu;
 
 namespace DropMission
 {
@@ -45,7 +45,7 @@ namespace DropMission
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            screenManager.AddScreen(new LogoScreen());
+            screenManager.AddScreen(new MainMenuScreen());
 
             base.Initialize();
         }

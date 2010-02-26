@@ -19,12 +19,14 @@ namespace DropMission.ScreensManager
         }
         List<string> menuEntries = new List<string>();
 
+        
         public SpriteFont SpriteFont
         {
             get { return spriteFont; }
             set { spriteFont = value; }
         }
         SpriteFont spriteFont;
+         
 
         public Vector2 StartPosition
         {
@@ -119,7 +121,7 @@ namespace DropMission.ScreensManager
             if (ScreenState == ScreenState.TransitionOn || ScreenState == ScreenState.TransitionOff)
             {
                 Vector2 acceleration = new Vector2((float)Math.Pow(TransitionPercent - 1, 2), 0);
-                acceleration.X += TransitionDirection * -150;
+                acceleration.X *= TransitionDirection * -150;
 
                 position += acceleration;
             }
