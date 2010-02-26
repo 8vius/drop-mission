@@ -146,6 +146,7 @@ namespace DropMission.Entidades
         public Weapon(Rectangle Rect)
         {
             destinationRect = new Rectangle(Rect.X, Rect.Y, spriteWidth, spriteHeight);
+            clip = new List<Bala>();
             Rotacion = 0.0f;
         }
 

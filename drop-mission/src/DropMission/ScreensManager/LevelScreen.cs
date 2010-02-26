@@ -66,6 +66,18 @@ namespace DropMission.ScreensManager
         public override void Update(GameTime gameTime, bool covered)
         {
             jugador.CalcularTimer(gameTime);
+
+            foreach (Bala bala in jugador.arma.Balas)
+            {
+                if (bala.Vivo)
+                {
+                    bala.Mover();
+                }
+
+          
+
+            }
+
             base.Update(gameTime, covered);
         }
 
