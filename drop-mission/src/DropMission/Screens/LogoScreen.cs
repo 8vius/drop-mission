@@ -23,7 +23,7 @@ namespace DropMission.Screens
         {
             //Load the logo and pixel
             ContentManager content = ScreenManager.Game.Content;
-            Texture = content.Load<Texture2D>("phslogo");
+            Texture = content.Load<Texture2D>("quillaIntroLogoWhite");
             Pixel = content.Load<Texture2D>("singlePixel");
         }
 
