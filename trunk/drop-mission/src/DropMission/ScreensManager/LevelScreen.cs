@@ -137,12 +137,15 @@ namespace DropMission.ScreensManager
             float marginLeft = cameraPosition + marginWidth;
             float marginRight = cameraPosition + viewport.Width - marginWidth;
 
+            //Para calcular la posicion en la que queremos que el jugador deje de avanzar y se mueva el fondo
+            Vector2 PosicionJugador = new Vector2(jugador.RectanguloDestino.X + 150, jugador.RectanguloDestino.Y);
+
             // Aca se calcula que tanto se debe scrollear cuando el player esta al borde de la pantalla
             float cameraMovement = 0.0f;
-            if (jugador.RectanguloDestino.X < marginLeft)
-                cameraMovement = jugador.RectanguloDestino.X - marginLeft;
-            else if (jugador.RectanguloDestino.X > marginRight)
-                cameraMovement = jugador.RectanguloDestino.X - marginRight;
+            if (PosicionJugador.X < marginLeft)
+                cameraMovement = PosicionJugador.X - marginLeft;
+            else if (PosicionJugador.X > marginRight)
+                cameraMovement = PosicionJugador.X - marginRight;
 
             // Aca se hace update de la position de la camara para que no se salga del nivel
             // aun tengo que determinar que tanto va a medir el nivel para hacerlo bien, le puse 5000 por random
