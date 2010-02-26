@@ -5,6 +5,7 @@ using System.Text;
 using DropMission.ScreensManager;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using DropMission.Entidades;
 
 namespace DropMission.Screens
 {
@@ -38,6 +39,13 @@ namespace DropMission.Screens
 
             //Cargo los sprites del arma
             Jugador.arma.SpriteArma = content.Load<Texture2D>("Sprites//Weapon//M16");
+
+            for (int i = 0; i < 30; i++)
+            {
+                Bala bala = new Bala();
+                bala.SpriteBala = content.Load<Texture2D>("Sprites//Weapon//bala");
+                Jugador.arma.Balas.Add(bala);
+            }
         }
 
 
