@@ -85,11 +85,8 @@ namespace DropMission.ScreensManager
             {
                 if (bala.Vivo)
                 {
-                    bala.Mover();
+                    bala.Mover(jugador.RectanguloDestino);
                 }
-
-          
-
             }
 
             base.Update(gameTime, covered);
