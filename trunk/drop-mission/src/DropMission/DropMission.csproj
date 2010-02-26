@@ -70,6 +70,7 @@
     <Reference Include="System">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml">
       <Private>False</Private>
     </Reference>
@@ -100,7 +101,7 @@
     <Compile Include="ScreensManager\ScreenManager.cs" />
     <Compile Include="Screens\Levels\Desierto.cs" />
     <Compile Include="Screens\LogoScreen.cs" />
-    <Compile Include="Screens\MainMenuScreen.cs" />
+    <Compile Include="Screens\Menu\MainMenuScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

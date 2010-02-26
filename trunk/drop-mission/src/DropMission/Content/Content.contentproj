@@ -98,6 +98,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Menu\Fondo.png">
+      <Name>Fondo</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Menu\MenuFont.spritefont">
+      <Name>MenuFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="quillaIntroLogoWhite.png">
       <Name>quillaIntroLogoWhite</Name>
       <Importer>TextureImporter</Importer>

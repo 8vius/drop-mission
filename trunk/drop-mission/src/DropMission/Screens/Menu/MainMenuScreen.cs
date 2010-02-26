@@ -7,27 +7,28 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using DropMission.ScreensManager;
 
-namespace DropMission.Screens
+namespace DropMission.Screens.Menu
 {
     public class MainMenuScreen : MenuScreen
     {
 
         public MainMenuScreen()
         {
-            MenuEntries.Add("Comenzar juego");
+            MenuEntries.Add("Comenzar");
+            MenuEntries.Add("Opciones");
             MenuEntries.Add("Salir");
 
-            Selected = Color.YellowGreen;
-            NoneSelected = Color.Yellow;
+            Selected = Color.Yellow;
+            NoneSelected = Color.White;
 
-            StartPosition = new Vector2(275, 250);
+            StartPosition = new Vector2(535, 440);
         }
 
         public override void LoadContent()
         {
             ContentManager content = ScreenManager.Game.Content;
-            SpriteFont = content.Load<SpriteFont>("Font");
-            Background = content.Load<Texture2D>("PortadaDM");
+            SpriteFont = content.Load<SpriteFont>("Menu//MenuFont");
+            Background = content.Load<Texture2D>("Menu//Fondo");
         }
 
         public override void Remove()
@@ -41,7 +42,7 @@ namespace DropMission.Screens
             ExitScreen();
             switch (selected)
             {
-                case 0 : ScreenManager.AddScreen(new LogoScreen()); break;
+                case 0 : ScreenManager.AddScreen(new Desierto()); break;
             }
         }
 
