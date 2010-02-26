@@ -282,7 +282,7 @@ namespace DropMission.Entidades
                     if (direccionApuntado == posicionArma.AbajoDerecha)//derecha-abajo
                         bala.Posicion = new Vector2(arma.PosicionX + 115, arma.PosicionY + 90);
                     
-                    bala.Velocidad = new Vector2((float)Math.Cos(arma.Rotacion),(float)Math.Sin(arma.Rotacion)) * 13.0f;
+                    bala.Velocidad = new Vector2((float)Math.Cos(arma.Rotacion),(float)Math.Sin(arma.Rotacion)) * 18.0f;
                     delay = false;
                     
                     return;
