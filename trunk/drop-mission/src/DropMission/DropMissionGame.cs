@@ -46,7 +46,7 @@ namespace DropMission
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            screenManager.AddScreen(new MainMenuScreen());
+            screenManager.AddScreen(new LogoScreen());
 
             base.Initialize();
         }
