@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using DropMission.ScreensManager;
+using DropMission.Screens.Menu;
 
 namespace DropMission.Screens
 {
@@ -31,7 +32,7 @@ namespace DropMission.Screens
         public override void Remove()
         {
             //Add the menu screen to the manager
-            //ScreenManager.AddScreen(new MainMenuScreen());
+            ScreenManager.AddScreen(new MainMenuScreen());
             base.Remove();
         }
     }
