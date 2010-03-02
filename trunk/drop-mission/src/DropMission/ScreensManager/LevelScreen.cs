@@ -12,20 +12,9 @@ namespace DropMission.ScreensManager
     {
         #region Fields and Properties
 
-    /*    Texture2D backgroundLejos;
-        public Texture2D BackgroundLejos
-        {
-            get { return backgroundLejos; }
-            set { backgroundLejos = value; }
-        }
-
-        Texture2D backgroundCerca;
-        public Texture2D BackgroundCerca
-        {
-            get { return backgroundCerca; }
-            set { backgroundCerca = value; }
-        } */
-
+        /// <summary>
+        /// Posicion de la camara para mover el fondo
+        /// </summary>
         float cameraPosition;
         public float CameraPosition
         {
@@ -33,6 +22,9 @@ namespace DropMission.ScreensManager
             set { cameraPosition = value; }
         }
 
+        /// <summary>
+        /// Capas del escenario (fondo lejos, cerca, hud)
+        /// </summary>
         LevelLayer[] layers;
         public LevelLayer[] Layers
         {
@@ -40,6 +32,9 @@ namespace DropMission.ScreensManager
             set { layers = value; }
         }
 
+        /// <summary>
+        /// La instancia del jugador en el nivel
+        /// </summary>
         Player jugador;
         public Player Jugador
         {
@@ -48,6 +43,10 @@ namespace DropMission.ScreensManager
         }
 
         #region Propiedades para la transparencia
+        /// <summary>
+        /// Es el pixel que utilizamos para las transparencias al entrar
+        /// y salir de la pantalla.
+        /// </summary>
         public Texture2D Pixel
         {
             get { return pixel; }
@@ -55,6 +54,10 @@ namespace DropMission.ScreensManager
         }
         Texture2D pixel;
 
+        /// <summary>
+        /// La opacidad de la transparencia en las
+        /// transiciones de pantalla.
+        /// </summary>
         public float FadeOpacity
         {
             get { return fadeOpacity; }
@@ -62,6 +65,10 @@ namespace DropMission.ScreensManager
         }
         float fadeOpacity;
 
+        /// <summary>
+        /// El Color de la transparencia de las transiciones
+        /// de pantalla (Normalmente es negro)
+        /// </summary>
         public Color FadeColor
         {
             get { return fadeColor; }
@@ -72,6 +79,10 @@ namespace DropMission.ScreensManager
 
         #endregion
 
+        /// <summary>
+        /// Constructor de la clase y solo asigna 1.5 segundos
+        /// a las transiciones de entrada y salida de la pantalla
+        /// </summary>
         public LevelScreen()
         {
             TransitionOnTime = TransitionOffTime = TimeSpan.FromSeconds(1.5);
@@ -79,8 +90,11 @@ namespace DropMission.ScreensManager
 
         public override void Update(GameTime gameTime, bool covered)
         {
+            //Esto es para calcular un tiempo de delay para las animaciones
+            //Posiblemente lo podamos cambiar para q funcione mejor
             jugador.CalcularTimer(gameTime);
 
+            //Hace un update de movimiento de las balas que fueron disparadas
             foreach (Bala bala in jugador.arma.Balas)
             {
                 if (bala.Vivo)
@@ -97,13 +111,6 @@ namespace DropMission.ScreensManager
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
             Rectangle viewportRect = new Rectangle(0,0,ScreenManager.Game.GraphicsDevice.Viewport.Width,
                                                        ScreenManager.Game.GraphicsDevice.Viewport.Height);
-
-      /*       spriteBatch.Begin();
-
-            spriteBatch.Draw(backgroundCerca, viewportRect, Color.White);
-            jugador.Draw(spriteBatch);
-
-            spriteBatch.End(); */
 
             spriteBatch.Begin();
             for (int i = 0; i <= 1; ++i)
@@ -127,6 +134,8 @@ namespace DropMission.ScreensManager
         private void ScrollCamera(Viewport viewport)
         {
             // Esta es la medida donde queremos que se pare el player
+            // Lo intentas poner a mas de 0.5 y estalla asi q mejor usa
+            // el vector2 de posicion jugador que esta mas abajo
             const float ViewMargin = 0.5f;
 
             // Aca se calculan los bordes de la pantalla
