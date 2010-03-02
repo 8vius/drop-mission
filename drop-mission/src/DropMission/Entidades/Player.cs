@@ -14,6 +14,9 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace DropMission.Entidades
 {
+    /// <summary>
+    /// Estados del jugador
+    /// </summary>
     public enum estadoPlayer
     { 
         Caminando, 
@@ -34,7 +37,6 @@ namespace DropMission.Entidades
         private Rectangle destinationRect;
         private Texture2D spriteSheetWalk;
         private Texture2D spriteSheetJump;
-
         private int posicionXanterior;
         private int tiempoDeSalto = 0; 
 
@@ -42,6 +44,10 @@ namespace DropMission.Entidades
 
         #region Atributos de posicionamiento
 
+        /// <summary>
+        /// Propiedad para cambiar la posicion X de impresion del
+        /// jugador en la pantalla.
+        /// </summary>
         int PosicionX 
         {
             get 
@@ -55,6 +61,10 @@ namespace DropMission.Entidades
             }
         }
 
+        /// <summary>
+        /// Propiedad para cambiar la posicion Y de impresion del
+        /// jugador en la pantalla.
+        /// </summary>
         int PosicionY
         {
             get
@@ -72,11 +82,18 @@ namespace DropMission.Entidades
 
         #region Gadgets
 
+        //Aqui se colocan todos los items del jugador como son
+        //armas y granadas.
         public Weapon arma;
 
         #endregion
 
         #region Propiedades
+
+        /// <summary>
+        /// Rectangulo que contiene la informacion del sprite dentro 
+        /// del spriteSheet a ser utilizado 
+        /// </summary>
         public virtual Rectangle RectanguloFuente
         {
             get
@@ -89,6 +106,10 @@ namespace DropMission.Entidades
             }
         }
 
+        /// <summary>
+        /// Rectangulo donde se va a imprimir el sprite; los atributos 
+        /// de posicionamiento cambian las cordenadas de este rectangulo
+        /// </summary>
         public virtual Rectangle RectanguloDestino
         {
             get
@@ -101,6 +122,10 @@ namespace DropMission.Entidades
             }
         }
 
+        /// <summary>
+        /// SpriteSheet con todos los frames de animacion del personaje
+        /// caminando
+        /// </summary>
         public virtual Texture2D SpriteCaminar
         {
             get
@@ -113,6 +138,10 @@ namespace DropMission.Entidades
             }
         }
 
+        /// <summary>
+        /// SpriteSheet con todos los frames de animacion del personaje
+        /// saltando
+        /// </summary>
         public virtual Texture2D SpriteSaltar
         {
             get
@@ -148,6 +177,9 @@ namespace DropMission.Entidades
 
         #region Metodos
 
+        /// <summary>
+        /// Aqui se reinician las animaciones de movimiento
+        /// </summary>
         public void Reset()
         {
             int sourceY = sourceRect.Y;
@@ -169,11 +201,19 @@ namespace DropMission.Entidades
             }
         }
 
+        /// <summary>
+        /// Es un metodo que calcula el timer que es utilizado para
+        /// hacer las animaciones en el tiempo que queramos
+        /// </summary>
+        /// <param name="gameTime">El gametime</param>
         public void CalcularTimer(GameTime gameTime)
         { 
             timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
         }
 
+        /// <summary>
+        /// Es el metodo que se encarga de mover y animar al personaje a la derecha
+        /// </summary>
         public void CaminarDerecha()
         {
             if (timer > interval)
@@ -193,6 +233,9 @@ namespace DropMission.Entidades
             PosicionX += 5;
         }
 
+        /// <summary>
+        /// Es el metodo que se encarga de mover y animar al personaje a la izquierda
+        /// </summary>
         public void CaminarIzquierda()
         {
             if (timer > interval)
@@ -212,6 +255,10 @@ namespace DropMission.Entidades
             PosicionX -= 5;
         }
 
+        /// <summary>
+        /// Es el metodo para animar y ejecutar el movimiento de Salto
+        /// del personaje
+        /// </summary>
         public void Saltar()
         {
             Status = estadoPlayer.Saltando;
@@ -243,15 +290,26 @@ namespace DropMission.Entidades
             }
         }
 
+        /// <summary>
+        /// Gira el arma dependiendo de la posicion en que
+        /// se este apuntando
+        /// </summary>
+        /// <param name="inclinacion">Nueva posicion del arma (sacado del enum)</param>
         public void GirarArma(posicionArma inclinacion)
         {
             direccionApuntado = inclinacion;
             arma.Rotar(inclinacion,sourceRect);
         }
 
+        /// <summary>
+        /// Metodo para realizar el disparo. por ahora solo lo hace con 
+        /// 1 sola arma pero luego lo hara con cualquier arma adquirida.
+        /// </summary>
+        /// <param name="gameTime"></param>
         public void Disparar(GameTime gameTime)
         {
-
+            //Con esto lo que logro es hacer un delay a cada disparo para
+            //que no salgan varias balas al mismo tiempo
             elapsedTime += gameTime.ElapsedGameTime.Milliseconds;
             if(elapsedTime >= 100)
             {
@@ -259,29 +317,44 @@ namespace DropMission.Entidades
                 elapsedTime = 0;
             }
       
+
             foreach (Bala bala in arma.Balas)
             {
                 if (!bala.Vivo && delay)
                 {
                     bala.Vivo = true;
-                    
-                    if (direccionApuntado == posicionArma.Derecha)//derecha
-                        bala.Posicion = new Vector2(arma.PosicionX + 135, arma.PosicionY + 50);
-                    if (direccionApuntado == posicionArma.ArribaDerecha)//derecha-arriba
-                        bala.Posicion = new Vector2(arma.PosicionX + 120, arma.PosicionY);
-                    if (direccionApuntado == posicionArma.Arriba)//arriba
-                        bala.Posicion = new Vector2(arma.PosicionX + 70, arma.PosicionY - 10);
-                    if (direccionApuntado == posicionArma.ArribaIzquierda)//izquierda-arriba
-                        bala.Posicion = new Vector2(arma.PosicionX + 15, arma.PosicionY);
-                    if (direccionApuntado == posicionArma.Izquierda)//izquierda
-                        bala.Posicion = new Vector2(arma.PosicionX, arma.PosicionY + 50);
-                    if (direccionApuntado == posicionArma.AbajoIzquierda)//izquierda-abajo
-                        bala.Posicion = new Vector2(arma.PosicionX + 15, arma.PosicionY + 85);
-                    if (direccionApuntado == posicionArma.Abajo)//abajo
-                        bala.Posicion = new Vector2(arma.PosicionX + 75, arma.PosicionY + 100);
-                    if (direccionApuntado == posicionArma.AbajoDerecha)//derecha-abajo
-                        bala.Posicion = new Vector2(arma.PosicionX + 115, arma.PosicionY + 90);
-                    
+
+                    //Cambio la posicion inicial de la bala para que dispare de la punta del arma
+                    switch (direccionApuntado)
+                    {
+                        case posicionArma.Derecha: 
+                            bala.Posicion = new Vector2(arma.PosicionX + 135, arma.PosicionY + 50);
+                            break;
+                        case posicionArma.ArribaDerecha:
+                            bala.Posicion = new Vector2(arma.PosicionX + 120, arma.PosicionY);
+                            break;
+                        case posicionArma.Arriba:
+                            bala.Posicion = new Vector2(arma.PosicionX + 70, arma.PosicionY - 10);
+                            break;
+                        case posicionArma.ArribaIzquierda:
+                            bala.Posicion = new Vector2(arma.PosicionX + 15, arma.PosicionY);
+                            break;
+                        case posicionArma.Izquierda:
+                            bala.Posicion = new Vector2(arma.PosicionX, arma.PosicionY + 50);
+                            break;
+                        case posicionArma.AbajoIzquierda:
+                            bala.Posicion = new Vector2(arma.PosicionX + 15, arma.PosicionY + 85);
+                            break;
+                        case posicionArma.Abajo:
+                            bala.Posicion = new Vector2(arma.PosicionX + 75, arma.PosicionY + 100);
+                            break;
+                        case posicionArma.AbajoDerecha:
+                            bala.Posicion = new Vector2(arma.PosicionX + 115, arma.PosicionY + 90);
+                            break;
+                        default: break;
+                    }
+
+                    //coloco la velocidad de la bala dependiendo de la rotacion del arma
                     bala.Velocidad = new Vector2((float)Math.Cos(arma.Rotacion),(float)Math.Sin(arma.Rotacion)) * 18.0f;
                     delay = false;
                     
@@ -294,18 +367,22 @@ namespace DropMission.Entidades
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
+            //Primero reviso si debo dibujar al jugador caminando
             if (this.Status == estadoPlayer.Caminando)
             {
+                //dibujo al jugador y su arma
                 spriteBatch.Draw(this.SpriteCaminar, this.RectanguloDestino, this.RectanguloFuente, Color.White);
                 spriteBatch.Draw(this.arma.SpriteArma, this.arma.RectanguloDestino, this.arma.RectanguloFuente, Color.White);
             }
+            //Reviso si el personaje esta saltando
             if (this.Status == estadoPlayer.Saltando)
             {
+                //dibujo al jugador saltando y a su arma
                 spriteBatch.Draw(this.SpriteSaltar, this.RectanguloDestino, this.RectanguloFuente, Color.White);
                 spriteBatch.Draw(this.arma.SpriteArma, this.arma.RectanguloDestino, this.arma.RectanguloFuente, Color.White);
             }
 
+            //Por ultimo dibujo las balas que ya se hayan disparado
             foreach (Bala bala in this.arma.Balas)
             {
                 if (bala.Vivo)
