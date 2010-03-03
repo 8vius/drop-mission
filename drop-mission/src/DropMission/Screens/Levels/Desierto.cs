@@ -39,8 +39,8 @@ namespace DropMission.Screens
             //Cargo los fondos
             Layers = new LevelLayer[2];
 
-            Layers[0] = new LevelLayer(content,"Backgrounds//Desierto//DesiertoLejos",0.5f);
-            Layers[1] = new LevelLayer(content,"Backgrounds//Desierto//DesiertoCerca",0.8f);
+            Layers[0] = new LevelLayer(content,"Backgrounds//Desierto//DesiertoLejos",0.6f);
+            Layers[1] = new LevelLayer(content,"Backgrounds//Desierto//DesiertoCerca",1f);
 
             //Cargo los Spritesheets del personaje
             Jugador.SpriteCaminar = content.Load<Texture2D>("Sprites//Player//walk");
