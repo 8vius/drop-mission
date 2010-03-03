@@ -58,7 +58,8 @@ namespace DropMission
             }
 
             //Verifica si el player esta estatico
-            if (keyboard.IsHoldingKey(Keys.LeftShift) && player.Status != estadoPlayer.Saltando)
+            if (keyboard.IsHoldingKey(Keys.LeftShift) && player.Status != estadoPlayer.Saltando && 
+                player.Status != estadoPlayer.Cayendo)
             {
                 if (keyboard.IsHoldingKey(Keys.Right))
                 {
@@ -135,7 +136,7 @@ namespace DropMission
                     player.GirarArma(posicionArma.AbajoIzquierda);
             }
 
-            if ((keyboard.IsHoldingKey(Keys.Down) &&
+            if ((keyboard.IsHoldingKey(Keys.Down) && 
                 keyboard.HasReleasedKey(Keys.Space)) ||
                 player.Status == estadoPlayer.Cayendo)
             {
