@@ -42,6 +42,16 @@ namespace DropMission.ScreensManager
             set { jugador = value; }
         }
 
+        /// <summary>
+        /// un listado de todas las plataformas del nivel
+        /// </summary>
+        List<Plataforma> plataformas;
+        public List<Plataforma> Plataformas
+        {
+            get { return plataformas; }
+            set { plataformas = value; }
+        }
+
         #region Propiedades para la transparencia
         /// <summary>
         /// Es el pixel que utilizamos para las transparencias al entrar
@@ -94,6 +104,39 @@ namespace DropMission.ScreensManager
             //Posiblemente lo podamos cambiar para q funcione mejor
             jugador.CalcularTimer(gameTime);
 
+            #region Prueba de colisiones con plataformas
+            //Colisiones
+            Vector2 centroPlayer = new Vector2(jugador.PosicionX + (jugador.RectanguloDestino.Width / 2),
+                                               jugador.PosicionY + jugador.RectanguloDestino.Height - 30);
+
+            foreach (Plataforma p in plataformas)
+            {
+                //El jugador esta en la posicion x de la plataforma
+                if (p.Posicion.X < centroPlayer.X && centroPlayer.X < (p.Posicion.X + p.Width))
+                {
+                    //el jugador esta colisionando con la plataforma
+                    if (p.Posicion.Y < centroPlayer.Y && centroPlayer.Y < (p.Posicion.X + p.Width))
+                    {
+                        if (jugador.Status == estadoPlayer.Saltando && jugador.posicionYanterior < jugador.PosicionY)
+                        {
+                            jugador.Status = estadoPlayer.Caminando;
+                            jugador.tiempoDeSalto = 0;
+                            jugador.PosicionY = ((int)p.Posicion.Y) - jugador.RectanguloDestino.Height + 30;
+                        }
+                    }
+                }
+                else
+                { 
+                    //Aqui reviso cuando el personaje sale de la plataforma
+                    if (jugador.Status == estadoPlayer.Caminando && jugador.PosicionY < 480)
+                    {
+                        jugador.Caer();
+                    }
+                }
+            }
+            
+            #endregion
+
             //Hace un update de movimiento de las balas que fueron disparadas
             foreach (Bala bala in jugador.arma.Balas)
             {
@@ -122,6 +165,11 @@ namespace DropMission.ScreensManager
             spriteBatch.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Immediate, SaveStateMode.None, cameraTransform);
 
             jugador.Draw(spriteBatch);
+            //Dibujar todas las plataformas del nivel
+            foreach (Plataforma plat in plataformas)
+            {
+                plat.Draw(spriteBatch);
+            }
 
             spriteBatch.End();
 

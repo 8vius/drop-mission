@@ -46,7 +46,7 @@ namespace DropMission
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            screenManager.AddScreen(new LogoScreen());
+            screenManager.AddScreen(new Desierto());
 
             base.Initialize();
         }

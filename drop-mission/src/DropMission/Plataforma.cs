@@ -33,23 +33,33 @@ namespace DropMission
     /// </summary>
     public class Plataforma
     {
-        public Texture2D texture;
+        #region Fields and properties
 
+        public Texture2D texture;
         public tipoPlataforma Tipo;
 
-        public const int Height = 48;
-        private int width;
+        public Vector2 Posicion { get; set; }
+
+        public int Height = 48;
+        private int width = 100;
         public int Width
         {
             get { return width; }
             set { width = value; }
         }
-        
+
+        #endregion
+
         public Plataforma(tipoPlataforma tipo)
         {
+            Posicion = new Vector2();
             Tipo = tipo;
         }
 
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(texture, new Rectangle((int)Posicion.X, (int)Posicion.Y, width, Height), Color.White);
+        }
 
     }
 }

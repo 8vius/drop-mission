@@ -20,7 +20,8 @@ namespace DropMission.Entidades
     public enum estadoPlayer
     { 
         Caminando, 
-        Saltando 
+        Saltando,
+        Callendo
     };
 
     public class Player
@@ -37,8 +38,11 @@ namespace DropMission.Entidades
         private Rectangle destinationRect;
         private Texture2D spriteSheetWalk;
         private Texture2D spriteSheetJump;
-        private int posicionXanterior;
-        private int tiempoDeSalto = 0; 
+        //lo puse public para hacer algo con las colisiones de las plataformas
+        //lo cambiamos ahora
+        public int posicionXanterior;
+        public int posicionYanterior;
+        public int tiempoDeSalto = 0; 
 
         #endregion
 
@@ -48,7 +52,7 @@ namespace DropMission.Entidades
         /// Propiedad para cambiar la posicion X de impresion del
         /// jugador en la pantalla.
         /// </summary>
-        int PosicionX 
+        public int PosicionX 
         {
             get 
             { 
@@ -65,7 +69,7 @@ namespace DropMission.Entidades
         /// Propiedad para cambiar la posicion Y de impresion del
         /// jugador en la pantalla.
         /// </summary>
-        int PosicionY
+        public int PosicionY
         {
             get
             {
@@ -263,6 +267,7 @@ namespace DropMission.Entidades
         {
             Status = estadoPlayer.Saltando;
             tiempoDeSalto += 1;
+            posicionYanterior = PosicionY;
             PosicionY = int.Parse(Math.Truncate(PosicionY - 1.5f * tiempoDeSalto
                                 + (0.1f * Math.Pow(tiempoDeSalto,2)) / 2).ToString());
 
@@ -282,6 +287,37 @@ namespace DropMission.Entidades
                 sourceRect = new Rectangle(currentFrame * spriteWidth, 100, spriteWidth, spriteHeight);
 
             //Aqui deberia ser colisionando con el piso pero por ahora
+            if (PosicionY >= 480)
+            {
+                Status = estadoPlayer.Caminando;
+                tiempoDeSalto = 0;
+                PosicionY = 480;
+            }
+        }
+
+        public void Caer()
+        {
+            Status = estadoPlayer.Callendo;
+            posicionYanterior = PosicionY;
+            tiempoDeSalto += 1;
+            PosicionY = int.Parse(Math.Truncate(PosicionY
+                                + (0.1f * Math.Pow(tiempoDeSalto, 2)) / 2).ToString());
+
+            if (timer > interval)
+            {
+                currentFrame++;
+                if (currentFrame > frameCount - 1)
+                {
+                    currentFrame = 0;
+                }
+                timer = 0f;
+            }
+
+            if (posicionXanterior < PosicionX)
+                sourceRect = new Rectangle(currentFrame * spriteWidth, 0, spriteWidth, spriteHeight);
+            else
+                sourceRect = new Rectangle(currentFrame * spriteWidth, 100, spriteWidth, spriteHeight);
+
             if (PosicionY >= 480)
             {
                 Status = estadoPlayer.Caminando;
@@ -375,7 +411,7 @@ namespace DropMission.Entidades
                 spriteBatch.Draw(this.arma.SpriteArma, this.arma.RectanguloDestino, this.arma.RectanguloFuente, Color.White);
             }
             //Reviso si el personaje esta saltando
-            if (this.Status == estadoPlayer.Saltando)
+            if (this.Status == estadoPlayer.Saltando || this.Status == estadoPlayer.Callendo)
             {
                 //dibujo al jugador saltando y a su arma
                 spriteBatch.Draw(this.SpriteSaltar, this.RectanguloDestino, this.RectanguloFuente, Color.White);
