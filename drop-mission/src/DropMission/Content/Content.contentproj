@@ -119,11 +119,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Backgrounds\Desierto\DesiertoCerca_0.png">
-      <Name>DesiertoCerca_0</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="Backgrounds\Desierto\DesiertoLejos_0.png">
       <Name>DesiertoLejos_0</Name>
       <Importer>TextureImporter</Importer>
