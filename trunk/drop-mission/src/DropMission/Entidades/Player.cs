@@ -243,7 +243,7 @@ namespace DropMission.Entidades
             arma.RectanguloFuente = new Rectangle(arma.FrameActual * arma.SpriteWidth, 0, arma.SpriteWidth, arma.SpriteHeight);
 
             posicionXanterior = PosicionX;
-            PosicionX += 5;
+            PosicionX += 4;
         }
 
         /// <summary>
@@ -265,7 +265,7 @@ namespace DropMission.Entidades
             arma.RectanguloFuente = new Rectangle(arma.FrameActual * arma.SpriteWidth, 100, arma.SpriteWidth, arma.SpriteHeight);
 
             posicionXanterior = PosicionX;
-            PosicionX -= 5;
+            PosicionX -= 4;
         }
 
         public void Estatico()
