@@ -21,6 +21,7 @@ namespace DropMission.Entidades
     { 
         Caminando, 
         Saltando,
+        Estatico,
         Callendo
     };
 
@@ -38,6 +39,8 @@ namespace DropMission.Entidades
         private Rectangle destinationRect;
         private Texture2D spriteSheetWalk;
         private Texture2D spriteSheetJump;
+        private string direccion = "";
+
         //lo puse public para hacer algo con las colisiones de las plataformas
         //lo cambiamos ahora
         public int posicionXanterior;
@@ -158,6 +161,12 @@ namespace DropMission.Entidades
             }
         }
 
+        public string Direccion
+        {
+            get { return direccion; }
+            set { direccion = value; }
+        }
+
         #endregion
 
         int elapsedTime = 0;
@@ -257,6 +266,22 @@ namespace DropMission.Entidades
 
             posicionXanterior = PosicionX;
             PosicionX -= 5;
+        }
+
+        public void Estatico()
+        {
+            Status = estadoPlayer.Estatico;
+
+            if (direccion == "Derecha")
+            {
+                sourceRect = new Rectangle(0, 0, spriteWidth, spriteHeight);
+                arma.RectanguloFuente = new Rectangle(0, 0, arma.SpriteWidth, arma.SpriteHeight);
+            }
+            else
+            {
+                sourceRect = new Rectangle(0, 100, spriteWidth, spriteHeight);
+                arma.RectanguloFuente = new Rectangle(0, 100, arma.SpriteWidth, arma.SpriteHeight);
+            }
         }
 
         /// <summary>
@@ -364,28 +389,43 @@ namespace DropMission.Entidades
                     switch (direccionApuntado)
                     {
                         case posicionArma.Derecha: 
-                            bala.Posicion = new Vector2(arma.PosicionX + 135, arma.PosicionY + 50);
+                            bala.Posicion = new Vector2(arma.PosicionX + 131, arma.PosicionY + 54);
                             break;
+
                         case posicionArma.ArribaDerecha:
-                            bala.Posicion = new Vector2(arma.PosicionX + 120, arma.PosicionY);
+                            bala.Posicion = new Vector2(arma.PosicionX + 118, arma.PosicionY + 12);
                             break;
+
                         case posicionArma.Arriba:
-                            bala.Posicion = new Vector2(arma.PosicionX + 70, arma.PosicionY - 10);
+                            //Verifico en que direccion esta viendo el personaje
+                            if(direccion == "Derecha")
+                                bala.Posicion = new Vector2(arma.PosicionX + 88, arma.PosicionY - 5);
+                            else
+                                bala.Posicion = new Vector2(arma.PosicionX + 59, arma.PosicionY - 5);
                             break;
+
                         case posicionArma.ArribaIzquierda:
-                            bala.Posicion = new Vector2(arma.PosicionX + 15, arma.PosicionY);
+                            bala.Posicion = new Vector2(arma.PosicionX + 25, arma.PosicionY + 12);
                             break;
+
                         case posicionArma.Izquierda:
-                            bala.Posicion = new Vector2(arma.PosicionX, arma.PosicionY + 50);
+                            bala.Posicion = new Vector2(arma.PosicionX + 15, arma.PosicionY + 54);
                             break;
+
                         case posicionArma.AbajoIzquierda:
-                            bala.Posicion = new Vector2(arma.PosicionX + 15, arma.PosicionY + 85);
+                            bala.Posicion = new Vector2(arma.PosicionX + 28, arma.PosicionY + 83);
                             break;
+
                         case posicionArma.Abajo:
-                            bala.Posicion = new Vector2(arma.PosicionX + 75, arma.PosicionY + 100);
+                            //Verifico en que direccion esta viendo el personaje
+                            if(direccion == "Derecha")
+                                bala.Posicion = new Vector2(arma.PosicionX + 100, arma.PosicionY + 90);
+                            else
+                                bala.Posicion = new Vector2(arma.PosicionX + 50, arma.PosicionY + 90);
                             break;
+
                         case posicionArma.AbajoDerecha:
-                            bala.Posicion = new Vector2(arma.PosicionX + 115, arma.PosicionY + 90);
+                            bala.Posicion = new Vector2(arma.PosicionX + 113, arma.PosicionY + 85);
                             break;
                         default: break;
                     }
@@ -403,6 +443,19 @@ namespace DropMission.Entidades
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            if (Status == estadoPlayer.Estatico)
+            {
+                if (direccion == "Derecha")
+                {
+                    spriteBatch.Draw(SpriteCaminar, RectanguloDestino, RectanguloFuente, Color.White);
+                    spriteBatch.Draw(this.arma.SpriteArma, this.arma.RectanguloDestino, arma.RectanguloFuente, Color.White);
+                }
+                else
+                {
+                    spriteBatch.Draw(SpriteCaminar, RectanguloDestino, RectanguloFuente, Color.White);
+                    spriteBatch.Draw(this.arma.SpriteArma, this.arma.RectanguloDestino, arma.RectanguloFuente, Color.White);
+                }
+            }
             //Primero reviso si debo dibujar al jugador caminando
             if (this.Status == estadoPlayer.Caminando)
             {
