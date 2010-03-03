@@ -40,7 +40,7 @@ namespace DropMission
 
         public Vector2 Posicion { get; set; }
 
-        public int Height = 48;
+        public int Height = 20;
         private int width = 100;
         public int Width
         {
