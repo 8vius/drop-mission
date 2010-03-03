@@ -57,6 +57,44 @@ namespace DropMission
                 Game.Exit();
             }
 
+            //Verifica si el player esta estatico
+            if (keyboard.IsHoldingKey(Keys.LeftShift) && player.Status != estadoPlayer.Saltando)
+            {
+                if (keyboard.IsHoldingKey(Keys.Right))
+                {
+                    player.Direccion = "Derecha";
+
+                    player.Estatico();
+
+                    player.GirarArma(posicionArma.Derecha);
+
+                    if (keyboard.IsHoldingKey(Keys.Up))
+                        player.GirarArma(posicionArma.ArribaDerecha);
+                    if (keyboard.IsHoldingKey(Keys.Down))
+                        player.GirarArma(posicionArma.AbajoDerecha);
+                }
+
+                if (keyboard.IsHoldingKey(Keys.Left))
+                {
+                    player.Direccion = "Izquierda";
+
+                    player.Estatico();
+
+                    player.GirarArma(posicionArma.Izquierda);
+
+                    if (keyboard.IsHoldingKey(Keys.Up))
+                        player.GirarArma(posicionArma.ArribaIzquierda);
+                    if (keyboard.IsHoldingKey(Keys.Down))
+                        player.GirarArma(posicionArma.AbajoIzquierda);
+                }
+
+                if(keyboard.IsHoldingKey(Keys.Up))
+                    player.GirarArma(posicionArma.Arriba);
+
+                if(keyboard.IsHoldingKey(Keys.Down))
+                    player.GirarArma(posicionArma.Abajo);
+            }
+
             if (keyboard.IsKeyDown(Keys.Up))
             {
                 player.GirarArma(posicionArma.Arriba);
@@ -69,7 +107,9 @@ namespace DropMission
 
             if (keyboard.IsHoldingKey(Keys.Right))
             {
-                if(!keyboard.IsHoldingKey(Keys.LeftShift))
+                player.Direccion = "Derecha";
+
+                if (!keyboard.IsHoldingKey(Keys.LeftShift))
                     player.CaminarDerecha();
 
                 player.GirarArma(posicionArma.Derecha);
@@ -82,10 +122,12 @@ namespace DropMission
 
             if (keyboard.IsKeyDown(Keys.Left))
             {
+                player.Direccion = "Izquierda";
+
                 if (!keyboard.IsHoldingKey(Keys.LeftShift))
                     player.CaminarIzquierda();
 
-                player.GirarArma(posicionArma.Izquierda);
+                player.GirarArma(posicionArma.Izquierda);            
 
                 if (keyboard.IsHoldingKey(Keys.Up))
                     player.GirarArma(posicionArma.ArribaIzquierda);
@@ -100,7 +142,7 @@ namespace DropMission
                 player.Caer();
             }
 
-            if ((keyboard.WasKeyPressed(Keys.Space) 
+            if ((keyboard.WasKeyPressed(Keys.Space) && !keyboard.IsHoldingKey(Keys.LeftShift)
                 || player.Status == estadoPlayer.Saltando)
                 && player.Status != estadoPlayer.Callendo)
             {
