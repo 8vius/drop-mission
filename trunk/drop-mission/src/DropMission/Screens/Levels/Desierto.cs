@@ -6,6 +6,7 @@ using DropMission.ScreensManager;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using DropMission.Entidades;
+using Microsoft.Xna.Framework;
 
 namespace DropMission.Screens
 {
@@ -14,6 +15,11 @@ namespace DropMission.Screens
         public Desierto()
         {
             Jugador = new DropMission.Entidades.Player();
+            Plataformas = new List<Plataforma>();
+            //Prueba de las plataformas
+            Plataforma p = new Plataforma(tipoPlataforma.Platform);
+            p.Posicion = new Vector2(400, 400);
+            Plataformas.Add(p);
         }
 
         public override void Initialize()
@@ -35,7 +41,6 @@ namespace DropMission.Screens
 
             Layers[0] = new LevelLayer(content,"Backgrounds//Desierto//DesiertoLejos",0.5f);
             Layers[1] = new LevelLayer(content,"Backgrounds//Desierto//DesiertoCerca",0.8f);
-  //          BackgroundCerca = content.Load<Texture2D>("Backgrounds//bg1");
 
             //Cargo los Spritesheets del personaje
             Jugador.SpriteCaminar = content.Load<Texture2D>("Sprites//Player//walk");
@@ -43,12 +48,17 @@ namespace DropMission.Screens
 
             //Cargo los sprites del arma
             Jugador.arma.SpriteArma = content.Load<Texture2D>("Sprites//Weapon//M16");
-
             for (int i = 0; i < 30; i++)
             {
                 Bala bala = new Bala();
                 bala.SpriteBala = content.Load<Texture2D>("Sprites//Weapon//bala");
                 Jugador.arma.Balas.Add(bala);
+            }
+
+            //Cargo el sprite para todas las texturas
+            foreach (Plataforma plat in Plataformas)
+            {
+                plat.texture = content.Load<Texture2D>("Sprites//Plataforma//plataformaCentro");
             }
         }
 

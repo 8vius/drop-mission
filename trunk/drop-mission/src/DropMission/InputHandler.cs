@@ -93,8 +93,16 @@ namespace DropMission
                     player.GirarArma(posicionArma.AbajoIzquierda);
             }
 
-            if ((keyboard.WasKeyPressed(Keys.Space))
+            if ((keyboard.IsHoldingKey(Keys.Down) &&
+                keyboard.HasReleasedKey(Keys.Space)) ||
+                player.Status == estadoPlayer.Callendo)
+            {
+                player.Caer();
+            }
+
+            if ((keyboard.WasKeyPressed(Keys.Space) 
                 || player.Status == estadoPlayer.Saltando)
+                && player.Status != estadoPlayer.Callendo)
             {
                 player.Saltar();
             }
