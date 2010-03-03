@@ -22,7 +22,7 @@ namespace DropMission.Entidades
         Caminando, 
         Saltando,
         Estatico,
-        Callendo
+        Cayendo
     };
 
     public class Player
@@ -322,7 +322,7 @@ namespace DropMission.Entidades
 
         public void Caer()
         {
-            Status = estadoPlayer.Callendo;
+            Status = estadoPlayer.Cayendo;
             posicionYanterior = PosicionY;
             tiempoDeSalto += 1;
             PosicionY = int.Parse(Math.Truncate(PosicionY
@@ -464,7 +464,7 @@ namespace DropMission.Entidades
                 spriteBatch.Draw(this.arma.SpriteArma, this.arma.RectanguloDestino, this.arma.RectanguloFuente, Color.White);
             }
             //Reviso si el personaje esta saltando
-            if (this.Status == estadoPlayer.Saltando || this.Status == estadoPlayer.Callendo)
+            if (this.Status == estadoPlayer.Saltando || this.Status == estadoPlayer.Cayendo)
             {
                 //dibujo al jugador saltando y a su arma
                 spriteBatch.Draw(this.SpriteSaltar, this.RectanguloDestino, this.RectanguloFuente, Color.White);

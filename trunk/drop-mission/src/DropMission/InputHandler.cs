@@ -137,14 +137,14 @@ namespace DropMission
 
             if ((keyboard.IsHoldingKey(Keys.Down) &&
                 keyboard.HasReleasedKey(Keys.Space)) ||
-                player.Status == estadoPlayer.Callendo)
+                player.Status == estadoPlayer.Cayendo)
             {
                 player.Caer();
             }
 
             if ((keyboard.WasKeyPressed(Keys.Space) && !keyboard.IsHoldingKey(Keys.LeftShift)
                 || player.Status == estadoPlayer.Saltando)
-                && player.Status != estadoPlayer.Callendo)
+                && player.Status != estadoPlayer.Cayendo)
             {
                 player.Saltar();
             }
