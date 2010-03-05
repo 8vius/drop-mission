@@ -14,21 +14,29 @@ namespace DropMission.Screens.Menu
 
         public MainMenuScreen()
         {
-            MenuEntries.Add("Comenzar");
-            MenuEntries.Add("Opciones");
-            MenuEntries.Add("Salir");
+            //MenuEntries.Add("Comenzar");
+            //MenuEntries.Add("Opciones");
+            //MenuEntries.Add("Salir");
 
-            Selected = Color.Yellow;
-            NoneSelected = Color.White;
+            //Selected = Color.Yellow;
+            //NoneSelected = Color.White;
 
-            StartPosition = new Vector2(535, 440);
+            //StartPosition = new Vector2(535, 440);
+
+
         }
 
         public override void LoadContent()
         {
             ContentManager content = ScreenManager.Game.Content;
-            SpriteFont = content.Load<SpriteFont>("Menu//MenuFont");
+            //SpriteFont = content.Load<SpriteFont>("Menu//MenuFont");
             Background = content.Load<Texture2D>("Menu//Fondo");
+            Player = content.Load<Texture2D>("Menu//Player");
+            SelectedOption = content.Load<Texture2D>("Menu//Star");
+            Title = content.Load<Texture2D>("Menu//title");
+            MenuEntries.Add(content.Load<Texture2D>("Menu//startGame"));
+            MenuEntries.Add(content.Load<Texture2D>("Menu//options"));
+            MenuEntries.Add(content.Load<Texture2D>("Menu//quit"));
         }
 
         public override void Remove()
