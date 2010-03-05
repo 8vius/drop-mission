@@ -13,54 +13,14 @@ namespace DropMission.ScreensManager
 
         #region Fields and Properties
 
-        /*public List<string> MenuEntries
-        {
-            get { return menuEntries; }
-        }
-        List<string> menuEntries = new List<string>();
-
-        
-        public SpriteFont SpriteFont
-        {
-            get { return spriteFont; }
-            set { spriteFont = value; }
-        }
-        SpriteFont spriteFont;
-
-        public Color Selected
-        {
-            get { return selected;}
-            set { selected = value;}
-        }
-        Color selected;
-
-        public Color NoneSelected
-        {
-            get { return noneSelected; }
-            set { noneSelected = value; }
-        }
-        Color noneSelected;
-         
-        public Vector2 StartPosition
-        {
-            get { return startPosition; }
-            set { startPosition = value; }
-        }
-        Vector2 startPosition;
-
-        public Vector2 Position
-        {
-            get { return position; }
-            set { position = value; }
-        }
-        Vector2 position;*/
-
+        //Lista de imagenes de las opciones
         public List<Texture2D> MenuEntries
         {
             get { return menuEntries; }
         }
         List<Texture2D> menuEntries = new List<Texture2D>();
 
+        //Imagen del fondo
         public Texture2D Background
         {
             get { return background; }
@@ -68,6 +28,7 @@ namespace DropMission.ScreensManager
         }
         Texture2D background;
 
+        //Imagen del titulo
         public Texture2D Title
         {
             get { return title; }
@@ -75,6 +36,7 @@ namespace DropMission.ScreensManager
         }
         Texture2D title;
 
+        //Imagen del jugador
         public Texture2D Player
         {
             get { return player; }
@@ -82,6 +44,7 @@ namespace DropMission.ScreensManager
         }
         Texture2D player;
 
+        //Imagen de la estrella
         public Texture2D SelectedOption
         {
             get { return selectedOption; }
@@ -89,11 +52,46 @@ namespace DropMission.ScreensManager
         }
         Texture2D selectedOption;
 
+        //Posicion inicial del las opciones
+        public Vector2 StartPositionMenu
+        {
+            get { return startPositionMenu; }
+            set { startPositionMenu = value; }
+        }
+        Vector2 startPositionMenu;
+
+        //Posicion de las opciones
+        public Vector2 PositionMenu
+        {
+            get { return positionMenu; }
+            set { positionMenu = value; }
+        }
+        Vector2 positionMenu;
+
+        //Posicion inicial del titulo
+        public Vector2 StartPositionTitle
+        {
+            get { return startPositionTitle; }
+            set { startPositionTitle = value; }
+        }
+        Vector2 startPositionTitle;
+
+        //Posicion inicial del jugador
+        public Vector2 StartPositionPlayer
+        {
+            get { return startPositionPlayer; }
+            set { startPositionPlayer = value; }
+        }
+        Vector2 startPositionPlayer;
+
+        //Variable para verificar que opcion eligio el usuario
         int selectedEntry = 0;
 
         #endregion
 
-        #region Menu Ops
+        #region Menu Operations
+
+        //Aqui va la declaracion de los metodos de las operaciones del menu
 
         public abstract void MenuSelect(int selected);
 
@@ -101,16 +99,35 @@ namespace DropMission.ScreensManager
 
         #endregion
 
+        #region Constructor
+
         public MenuScreen()
         {
             TransitionOnTime = TransitionOffTime = TimeSpan.FromSeconds(1.5);
         }
 
+        #endregion
+
+        #region UnloadContent
+
         public override void UnloadContent()
         {
-            //if (spriteFont != null)
-              //  spriteFont = null;
+            if (background != null)
+               background = null;
+
+            if (player != null)
+                player = null;
+
+            if (title != null)
+                title = null;
+
+            if (selectedOption != null)
+                selectedOption = null;
         }
+
+        #endregion
+
+        #region HandleInput
 
         public override void HandleInput()
         {
@@ -138,6 +155,10 @@ namespace DropMission.ScreensManager
 
         }
 
+        #endregion
+
+        #region Update
+
         public override void Update(GameTime gameTime, bool covered)
         {
             base.Update(gameTime, covered);
@@ -153,6 +174,10 @@ namespace DropMission.ScreensManager
             }*/
         }
 
+        #endregion
+
+        #region Drwan
+
         public override void Draw(GameTime gameTime)
         {
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
@@ -162,70 +187,38 @@ namespace DropMission.ScreensManager
 
             spriteBatch.Draw(background, new Rectangle(0, 0, viewport.Width, viewport.Height), Color.White);
 
-            spriteBatch.Draw(title, new Rectangle((viewport.Width / 2) - title.Width / 2, (viewport.Height / 2) - 250 , 366, 147), Color.White);
+            spriteBatch.Draw(title, new Rectangle((int)startPositionTitle.X, (int)startPositionTitle.Y, 
+                title.Width, title.Height), Color.White);
 
-            spriteBatch.Draw(player, new Rectangle(155, 425, 100, 80), Color.White);
+            spriteBatch.Draw(player, new Rectangle((int)startPositionPlayer.X, (int)startPositionPlayer.Y, 
+                player.Width, player.Height), Color.White);
+
+            positionMenu = startPositionMenu;
 
             for (int i = 0; i < menuEntries.Count; i++)
             {
                 bool isSelected = (i == selectedEntry);
-                DrawSelected(spriteBatch, viewport, menuEntries[i], isSelected);
-                viewport.Height += 100;
+                DrawSelected(spriteBatch, menuEntries[i], isSelected);
+                positionMenu.Y += 50f;
             }
 
             spriteBatch.End();
-
-            
-
-
-            /*Vector2 menuPosition = new Vector2(position.X, position.Y);
-
-            spriteBatch.Begin();
-
-            spriteBatch.Draw(background, new Rectangle(0, 0, viewport.Width, viewport.Height), Color.White);
-
-            for (int i = 0; i < menuEntries.Count; i++)
-            {
-                bool isSelected = (i == selectedEntry);
-                DrawEntry(spriteBatch, gameTime, menuEntries[i], menuPosition, isSelected);
-                menuPosition.Y += spriteFont.LineSpacing;
-            }
-
-            spriteBatch.End();*/
         }
 
-        /*private void DrawEntry(SpriteBatch spriteBatch, GameTime gameTime, string entry, Vector2 position,
-            bool isSelected)
+        #region DrawSelected
+
+        private void DrawSelected(SpriteBatch spriteBatch, Texture2D menuEntry, bool isSelected)
         {
-            Vector2 origin = new Vector2(0, spriteFont.LineSpacing / 2);
-            Color color = isSelected ? selected : noneSelected;
-            color = new Color(color, ScreenAlpha);
+            spriteBatch.Draw(menuEntry, new Rectangle((int)startPositionMenu.X, (int)positionMenu.Y,
+                menuEntry.Width, menuEntry.Height), Color.White);
 
-            float pulse = (float)(Math.Sin(gameTime.TotalGameTime.TotalSeconds * 3) + 1);
-            float scale = isSelected ? (1 + pulse * 0.05f) : 1f;
-
-            spriteBatch.DrawString(spriteFont, entry, position, color, 0, origin, scale, SpriteEffects.None,
-                0);
-        }*/
-
-        private void DrawSelected(SpriteBatch spriteBatch, Viewport viewport, Texture2D menuEntry, bool isSelected)
-        {
             if (isSelected)
-            {
-                spriteBatch.Draw(selectedOption, new Rectangle((viewport.Width / 2) - (menuEntry.Width / 2) - selectedOption.Width,
-                    (viewport.Height / 2), selectedOption.Width, selectedOption.Height), Color.White);
-
-                spriteBatch.Draw(menuEntry, new Rectangle((viewport.Width / 2) - menuEntry.Width / 2, (viewport.Height / 2),
-                    menuEntry.Width, menuEntry.Height), Color.White);
-
-                spriteBatch.Draw(selectedOption, new Rectangle((viewport.Width / 2) + (menuEntry.Width / 2),
-                    (viewport.Height / 2), selectedOption.Width, selectedOption.Height), Color.White);
-            }
-            else
-            {
-                spriteBatch.Draw(menuEntry, new Rectangle((viewport.Width / 2) - menuEntry.Width / 2, (viewport.Height / 2),
-                    menuEntry.Width, menuEntry.Height), Color.White);
-            }
+                spriteBatch.Draw(selectedOption, new Rectangle((int)startPositionMenu.X - selectedOption.Width,
+                    (int)positionMenu.Y - 5, selectedOption.Width, selectedOption.Height), Color.White);
         }
+
+        #endregion
+
+        #endregion
     }
 }
