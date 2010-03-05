@@ -13,7 +13,7 @@ namespace DropMission.ScreensManager
 
         #region Fields and Properties
 
-        public List<string> MenuEntries
+        /*public List<string> MenuEntries
         {
             get { return menuEntries; }
         }
@@ -26,21 +26,6 @@ namespace DropMission.ScreensManager
             set { spriteFont = value; }
         }
         SpriteFont spriteFont;
-         
-
-        public Vector2 StartPosition
-        {
-            get { return startPosition; }
-            set { startPosition = value; }
-        }
-        Vector2 startPosition;
-
-        public Vector2 Position
-        {
-            get { return position; }
-            set { position = value; }
-        }
-        Vector2 position;
 
         public Color Selected
         {
@@ -55,6 +40,26 @@ namespace DropMission.ScreensManager
             set { noneSelected = value; }
         }
         Color noneSelected;
+         
+        public Vector2 StartPosition
+        {
+            get { return startPosition; }
+            set { startPosition = value; }
+        }
+        Vector2 startPosition;
+
+        public Vector2 Position
+        {
+            get { return position; }
+            set { position = value; }
+        }
+        Vector2 position;*/
+
+        public List<Texture2D> MenuEntries
+        {
+            get { return menuEntries; }
+        }
+        List<Texture2D> menuEntries = new List<Texture2D>();
 
         public Texture2D Background
         {
@@ -62,6 +67,27 @@ namespace DropMission.ScreensManager
             set { background = value; }
         }
         Texture2D background;
+
+        public Texture2D Title
+        {
+            get { return title; }
+            set { title = value; }
+        }
+        Texture2D title;
+
+        public Texture2D Player
+        {
+            get { return player; }
+            set { player = value; }
+        }
+        Texture2D player;
+
+        public Texture2D SelectedOption
+        {
+            get { return selectedOption; }
+            set { selectedOption = value; }
+        }
+        Texture2D selectedOption;
 
         int selectedEntry = 0;
 
@@ -82,8 +108,8 @@ namespace DropMission.ScreensManager
 
         public override void UnloadContent()
         {
-            if (spriteFont != null)
-                spriteFont = null;
+            //if (spriteFont != null)
+              //  spriteFont = null;
         }
 
         public override void HandleInput()
@@ -116,7 +142,7 @@ namespace DropMission.ScreensManager
         {
             base.Update(gameTime, covered);
 
-            position = new Vector2(startPosition.X, startPosition.Y);
+            /*position = new Vector2(startPosition.X, startPosition.Y);
 
             if (ScreenState == ScreenState.TransitionOn || ScreenState == ScreenState.TransitionOff)
             {
@@ -124,14 +150,35 @@ namespace DropMission.ScreensManager
                 acceleration.X *= TransitionDirection * -150;
 
                 position += acceleration;
-            }
+            }*/
         }
 
         public override void Draw(GameTime gameTime)
         {
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
             Viewport viewport = ScreenManager.Game.GraphicsDevice.Viewport;
-            Vector2 menuPosition = new Vector2(position.X, position.Y);
+
+            spriteBatch.Begin();
+
+            spriteBatch.Draw(background, new Rectangle(0, 0, viewport.Width, viewport.Height), Color.White);
+
+            spriteBatch.Draw(title, new Rectangle((viewport.Width / 2) - title.Width / 2, (viewport.Height / 2) - 250 , 366, 147), Color.White);
+
+            spriteBatch.Draw(player, new Rectangle(155, 425, 100, 80), Color.White);
+
+            for (int i = 0; i < menuEntries.Count; i++)
+            {
+                bool isSelected = (i == selectedEntry);
+                DrawSelected(spriteBatch, viewport, menuEntries[i], isSelected);
+                viewport.Height += 100;
+            }
+
+            spriteBatch.End();
+
+            
+
+
+            /*Vector2 menuPosition = new Vector2(position.X, position.Y);
 
             spriteBatch.Begin();
 
@@ -144,10 +191,10 @@ namespace DropMission.ScreensManager
                 menuPosition.Y += spriteFont.LineSpacing;
             }
 
-            spriteBatch.End();
+            spriteBatch.End();*/
         }
 
-        private void DrawEntry(SpriteBatch spriteBatch, GameTime gameTime, string entry, Vector2 position,
+        /*private void DrawEntry(SpriteBatch spriteBatch, GameTime gameTime, string entry, Vector2 position,
             bool isSelected)
         {
             Vector2 origin = new Vector2(0, spriteFont.LineSpacing / 2);
@@ -159,6 +206,26 @@ namespace DropMission.ScreensManager
 
             spriteBatch.DrawString(spriteFont, entry, position, color, 0, origin, scale, SpriteEffects.None,
                 0);
+        }*/
+
+        private void DrawSelected(SpriteBatch spriteBatch, Viewport viewport, Texture2D menuEntry, bool isSelected)
+        {
+            if (isSelected)
+            {
+                spriteBatch.Draw(selectedOption, new Rectangle((viewport.Width / 2) - (menuEntry.Width / 2) - selectedOption.Width,
+                    (viewport.Height / 2), selectedOption.Width, selectedOption.Height), Color.White);
+
+                spriteBatch.Draw(menuEntry, new Rectangle((viewport.Width / 2) - menuEntry.Width / 2, (viewport.Height / 2),
+                    menuEntry.Width, menuEntry.Height), Color.White);
+
+                spriteBatch.Draw(selectedOption, new Rectangle((viewport.Width / 2) + (menuEntry.Width / 2),
+                    (viewport.Height / 2), selectedOption.Width, selectedOption.Height), Color.White);
+            }
+            else
+            {
+                spriteBatch.Draw(menuEntry, new Rectangle((viewport.Width / 2) - menuEntry.Width / 2, (viewport.Height / 2),
+                    menuEntry.Width, menuEntry.Height), Color.White);
+            }
         }
     }
 }
