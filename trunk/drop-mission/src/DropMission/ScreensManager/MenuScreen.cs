@@ -162,16 +162,6 @@ namespace DropMission.ScreensManager
         public override void Update(GameTime gameTime, bool covered)
         {
             base.Update(gameTime, covered);
-
-            /*position = new Vector2(startPosition.X, startPosition.Y);
-
-            if (ScreenState == ScreenState.TransitionOn || ScreenState == ScreenState.TransitionOff)
-            {
-                Vector2 acceleration = new Vector2((float)Math.Pow(TransitionPercent - 1, 2), 0);
-                acceleration.X *= TransitionDirection * -150;
-
-                position += acceleration;
-            }*/
         }
 
         #endregion
