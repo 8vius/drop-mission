@@ -3,16 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
-using Microsoft.Xna.Framework.Storage;
+using Microsoft.Xna.Framework.Content;
 
-namespace DropMission.Entidades.Enemigos
+namespace DropMission
 {
     public enum estadoKamikaze
     {
@@ -26,94 +20,30 @@ namespace DropMission.Entidades.Enemigos
         Derecha
     };
 
-    public class Kamikaze 
+    public class Kamikaze : Enemy
     {
-        #region Atributos para animacion
-
-        private const int spriteWidth = 150;
-        private const int spriteHeight = 100;
-        private float timer = 0f;
-        private int currentFrame = 0;
-        private int frameCount = 4;
-        private float interval = 1000 / 15;
-        private Rectangle sourceRect;
-        private Rectangle destinationRect;
-        private Texture2D spriteSheetWalk;
-        private Texture2D spriteSheetExplode;
-
-        private bool vivo;
+       
 
         private int posicionXanterior;
 
-        #endregion
-
-        #region Atributos de posicionamiento
-
-        int PosicionX
-        {
-            get { return destinationRect.X; }
-            set { destinationRect.X = value; }
-        }
-
-        int PosicionY
-        {
-            get { return destinationRect.Y; }
-            set { destinationRect.Y = value; }
-        }
-
-
-        #endregion
-
-
-        #region Propiedades
-
-        public virtual Rectangle RectanguloFuente
-        {
-            get { return sourceRect; }
-            set { sourceRect = value; }
-        }
-
-        public virtual Rectangle RectanguloDestino
-        {
-            get { return destinationRect; }
-            set { destinationRect = value; }
-        }
-
-        public virtual Texture2D SpriteCaminar
-        {
-            get { return spriteSheetWalk; }
-            set { spriteSheetWalk = value; }
-        }
-
-        public virtual Texture2D SpriteExplotar
-        {
-            get { return spriteSheetExplode; }
-            set { spriteSheetExplode = value; }
-        }
-
-        public bool Vivo
-        {
-            get { return vivo; }
-            set { vivo = value; }
-        }
-
-        #endregion
-
         public estadoKamikaze Status;
+        public posicionKamikaze PosicionKamikaze;
 
         public Kamikaze(posicionKamikaze Posicion)
         {
-            this.Status = estadoKamikaze.Caminando;
-            this.vivo = true;
+            Status = estadoKamikaze.Caminando;
+            Alive = true;
+            Arma = null;
+            PosicionKamikaze = Posicion;
 
             if (Posicion == posicionKamikaze.Derecha)
             {
-                destinationRect = new Rectangle(900, 450, spriteWidth, spriteHeight);
+                DestinationRect = new Rectangle(900, 450, SpriteWidth, SpriteHeight);
                 posicionXanterior = 900;
             }
             if (Posicion == posicionKamikaze.Izquierda)
             {
-                destinationRect = new Rectangle(-100, 450, spriteWidth, spriteHeight);
+                DestinationRect = new Rectangle(-100, 450, SpriteWidth, SpriteHeight);
                 posicionXanterior = -100;
             }
                        
@@ -121,58 +51,54 @@ namespace DropMission.Entidades.Enemigos
 
         #region Metodos
 
-        public void CalcularTimer(GameTime gameTime)
-        
-        {
-            timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-        }
-
         public void CaminarDerecha()
         {
-            if (timer > interval)
+            if (Timer > Interval)
             {
-                currentFrame++;
-                if (currentFrame > frameCount - 1)
+                CurrentFrame++;
+                if (CurrentFrame > FrameCount - 1)
                 {
-                    currentFrame = 0;
+                    CurrentFrame = 0;
                 }
-                timer = 0f;
+                Timer = 0f;
             }
 
-            sourceRect = new Rectangle(currentFrame * spriteWidth, 0, spriteWidth, spriteHeight);
+            SourceRect = new Rectangle(CurrentFrame * SpriteWidth, 0, SpriteWidth, SpriteHeight);
 
             posicionXanterior = PosicionX;
-            PosicionX += 5;
+            PosicionX += 4;
         }
 
         public void CaminarIzquierda()
         {
-            if (timer > interval)
+            if (Timer > Interval)
             {
-                currentFrame++;
-                if (currentFrame > frameCount - 1)
+                CurrentFrame++;
+                if (CurrentFrame > FrameCount - 1)
                 {
-                    currentFrame = 0;
+                    CurrentFrame = 0;
                 }
-                timer = 0f;
+                Timer = 0f;
             }
 
-            sourceRect = new Rectangle(currentFrame * spriteWidth, 100, spriteWidth, spriteHeight);
+            SourceRect = new Rectangle(CurrentFrame * SpriteWidth, 100, SpriteWidth, SpriteHeight);
 
             posicionXanterior = PosicionX;
-            PosicionX -= 5;
+            PosicionX -= 4;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Update(GameTime gameTime, Rectangle playerRect)
         {
-            spriteBatch.Draw(this.SpriteCaminar, 
-                             this.RectanguloDestino, 
-                             this.RectanguloFuente, 
-                             Color.White);
-
-            
+            if (PosicionKamikaze == posicionKamikaze.Derecha)
+                CaminarIzquierda();
+            if (PosicionKamikaze == posicionKamikaze.Izquierda)
+                CaminarDerecha();
         }
 
+        public override void LoadContent(ContentManager content)
+        {
+            SpriteSheetAlive = content.Load<Texture2D>("Sprites//Enemy//KamikazeWalk");
+        }
         #endregion
     }
 }
