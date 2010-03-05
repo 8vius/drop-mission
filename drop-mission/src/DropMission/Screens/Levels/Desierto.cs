@@ -16,10 +16,21 @@ namespace DropMission.Screens
         {
             Jugador = new DropMission.Entidades.Player();
             Plataformas = new List<Plataforma>();
+            Enemigos = new List<Enemy>();
             //Prueba de las plataformas
             Plataforma p = new Plataforma(tipoPlataforma.Platform);
             p.Posicion = new Vector2(400, 400);
             Plataformas.Add(p);
+
+            //Prueba Kamikazes
+            Kamikaze KamiPrueba1 = new Kamikaze(posicionKamikaze.Derecha);
+            Kamikaze KamiPrueba2 = new Kamikaze(posicionKamikaze.Izquierda);
+            Enemigos.Add(KamiPrueba1);
+            Enemigos.Add(KamiPrueba2);
+
+            //Prueba Camper
+            Camper CamperPrueba = new Camper(400, 325);
+            Enemigos.Add(CamperPrueba);
         }
 
         public override void Initialize()
@@ -59,6 +70,11 @@ namespace DropMission.Screens
             foreach (Plataforma plat in Plataformas)
             {
                 plat.texture = content.Load<Texture2D>("Sprites//Plataforma//plataformaCentro");
+            }
+
+            foreach (Enemy enemigo in Enemigos)
+            {
+                enemigo.LoadContent(content);
             }
         }
 

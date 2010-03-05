@@ -3,17 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Net;
-using Microsoft.Xna.Framework.Storage;
+using DropMission.Entidades;
+using Microsoft.Xna.Framework.Content;
 
 
-namespace DropMission.Entidades.Enemigos
+namespace DropMission
 {
     public enum miradaCamper
     {
@@ -21,117 +16,87 @@ namespace DropMission.Entidades.Enemigos
         Derecha
     };
 
-    public class Camper
+    public class Camper : Enemy
     {
-        #region Atributos para animacion
 
-        private const int spriteWidth = 150;
-        private const int spriteHeight = 100;
-        private float timer = 0f;
-        private int currentFrame = 0;
-        private int frameCount = 4;
-        private float interval = 1000 / 15;
-        private Rectangle sourceRect;
-        private Rectangle destinationRect;
-        private Texture2D spriteSheetPosition;
-        private Texture2D spriteSheetExplode;
+        miradaCamper mirada;
+        int elapsedTime;
+        bool delay;
 
-        private bool vivo;
-
-        private miradaCamper Mirada;
-
-        #endregion
-
-        #region Atributos de posicionamiento
-
-        int PosicionX
+        public miradaCamper Mirada
         {
-            get { return destinationRect.X; }
-            set { destinationRect.X = value; }
+            get { return mirada; }
+            set { mirada = value; }
         }
-
-        int PosicionY
-        {
-            get { return destinationRect.Y; }
-            set { destinationRect.Y = value; }
-        }
-
-
-        #endregion
-
-
-        #region Propiedades
-
-        public virtual Rectangle RectanguloFuente
-        {
-            get { return sourceRect; }
-            set { sourceRect = value; }
-        }
-
-        public virtual Rectangle RectanguloDestino
-        {
-            get { return destinationRect; }
-            set { destinationRect = value; }
-        }
-
-        public virtual Texture2D SpritePosicion
-        {
-            get { return spriteSheetPosition; }
-            set { spriteSheetPosition = value; }
-        }
-
-        
-
-        public bool Vivo
-        {
-            get { return vivo; }
-            set { vivo = value; }
-        }
-
-        #endregion
-
-        #region Gadgets
-
-        public Weapon arma;
-
-        #endregion
 
         public Camper(int X, int Y)
         {
-            Mirada = miradaCamper.Izquierda;
-            vivo = true;
-            destinationRect = new Rectangle(X, Y, spriteWidth, spriteHeight);
-            sourceRect = new Rectangle(0, 100, spriteWidth, spriteHeight);
-            arma = new Weapon(destinationRect);
-            arma.RectanguloFuente = new Rectangle(0,100,arma.SpriteWidth,arma.SpriteHeight);
-           
+            mirada = miradaCamper.Izquierda;
+            Alive = true;
+            DestinationRect = new Rectangle(X, Y, SpriteWidth, SpriteHeight);
+            SourceRect = new Rectangle(0, 100, SpriteWidth, SpriteHeight);
+            Arma = new Weapon(DestinationRect);
+            Arma.RectanguloFuente = new Rectangle(0,100,arma.SpriteWidth,arma.SpriteHeight);
 
+            for (int i = 0; i < 3;i++ )
+                Arma.Balas.Add(new Bala());
+           
         }
 
         #region Metodos
 
-        public void CalcularTimer(GameTime gameTime)
-        {
-            timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-        }
+        
         public void Girar()
         { }
-        public void Disparar()
-        { }
-
-        public void Draw(SpriteBatch spriteBatch)
+        
+        public void Disparar(GameTime gameTime, Rectangle playerRect)
         {
-            spriteBatch.Draw(this.SpritePosicion,
-                             this.RectanguloDestino,
-                             this.RectanguloFuente,
-                             Color.White);
-            spriteBatch.Draw(this.arma.SpriteArma, 
-                             this.arma.RectanguloDestino, 
-                             this.arma.RectanguloFuente, 
-                             Color.White);
+            //Con esto lo que logro es hacer un delay a cada disparo para
+            //que no salgan varias balas al mismo tiempo
+            elapsedTime += gameTime.ElapsedGameTime.Milliseconds;
+            if (elapsedTime >= 100)
+            {
+                delay = true;
+                elapsedTime = 0;
+            }
 
 
+            foreach (Bala bala in arma.Balas)
+            {
+                if (!bala.Vivo && delay)
+                {
+                    bala.Vivo = true;
+                    bala.Posicion = new Vector2(Arma.PosicionX, Arma.PosicionY);
+                    //Cambio la posicion inicial de la bala para que dispare de la punta del arma
+               
+
+                    //coloco la velocidad de la bala dependiendo de la rotacion del arma
+                    bala.Velocidad = new Vector2((float)Math.Cos(PosicionX - playerRect.X), (float)Math.Sin(PosicionY - playerRect.Y)) * 13.0f;
+                    delay = false;
+
+                    return;
+                }
+            }
         }
+        public override void Update(GameTime gameTime, Rectangle playerRect)
+        {
+            Disparar(gameTime,playerRect);
+            foreach (Bala bala in Arma.Balas)
+            {
+                if (bala.Vivo)
+                    bala.Mover(DestinationRect);
+            }
+        }
+
+        public override void LoadContent(ContentManager content)
+        {
+            SpriteSheetAlive = content.Load<Texture2D>("Sprites//Enemy//TerroristCamper");
+            Arma.SpriteArma = content.Load<Texture2D>("Sprites//Weapon//AK");
+            foreach (Bala bala in Arma.Balas)
+                bala.SpriteBala = content.Load<Texture2D>("Sprites//Weapon//bala");
+        }
+
+       
         #endregion
 
     }

@@ -52,6 +52,16 @@ namespace DropMission.ScreensManager
             set { plataformas = value; }
         }
 
+        /// <summary>
+        /// Lista que contiene a todos los enemigos del nivel
+        /// </summary>
+        List<Enemy> enemigos;
+        public List<Enemy> Enemigos
+        {
+            get { return enemigos; }
+            set { enemigos = value; }
+        }
+
         #region Propiedades para la transparencia
         /// <summary>
         /// Es el pixel que utilizamos para las transparencias al entrar
@@ -146,6 +156,11 @@ namespace DropMission.ScreensManager
                 }
             }
 
+            foreach (Enemy enemigo in enemigos)
+            {
+                enemigo.Update(gameTime,jugador.RectanguloDestino);
+            }
+
             base.Update(gameTime, covered);
         }
 
@@ -169,6 +184,12 @@ namespace DropMission.ScreensManager
             foreach (Plataforma plat in plataformas)
             {
                 plat.Draw(spriteBatch);
+            }
+
+            foreach (Enemy enemigo in enemigos)
+            {
+                enemigo.Draw(spriteBatch);
+                enemigo.CalcularTimer(gameTime);
             }
 
             spriteBatch.End();
