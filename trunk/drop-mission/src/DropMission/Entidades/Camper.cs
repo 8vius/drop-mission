@@ -66,7 +66,8 @@ namespace DropMission
                 if (!bala.Vivo && delay)
                 {
                     bala.Vivo = true;
-                    bala.Posicion = new Vector2(Arma.PosicionX, Arma.PosicionY);
+                    bala.Posicion = new Vector2((float)(Arma.PosicionX + (Arma.SpriteWidth / 2)),
+                                                (float)Arma.PosicionY + (Arma.SpriteHeight / 2));
                     //Cambio la posicion inicial de la bala para que dispare de la punta del arma
 
                     float angle = (float)Math.Atan2(PosicionY - playerRect.Y,PosicionX - playerRect.X);
