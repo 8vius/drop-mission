@@ -38,12 +38,12 @@ namespace DropMission
 
             if (Posicion == posicionKamikaze.Derecha)
             {
-                DestinationRect = new Rectangle(900, 450, SpriteWidth, SpriteHeight);
+                DestinationRect = new Rectangle(900, 480, SpriteWidth, SpriteHeight);
                 posicionXanterior = 900;
             }
             if (Posicion == posicionKamikaze.Izquierda)
             {
-                DestinationRect = new Rectangle(-100, 450, SpriteWidth, SpriteHeight);
+                DestinationRect = new Rectangle(-100, 480, SpriteWidth, SpriteHeight);
                 posicionXanterior = -100;
             }
                        

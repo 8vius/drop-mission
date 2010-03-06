@@ -179,19 +179,20 @@ namespace DropMission.ScreensManager
             Matrix cameraTransform = Matrix.CreateTranslation(-cameraPosition, 0.0f, 0.0f);
             spriteBatch.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Immediate, SaveStateMode.None, cameraTransform);
 
-            jugador.Draw(spriteBatch);
-            //Dibujar todas las plataformas del nivel
-            foreach (Plataforma plat in plataformas)
-            {
-                plat.Draw(spriteBatch);
-            }
-
             foreach (Enemy enemigo in enemigos)
             {
                 enemigo.Draw(spriteBatch);
                 enemigo.CalcularTimer(gameTime);
             }
 
+            //Dibujar todas las plataformas del nivel
+            foreach (Plataforma plat in plataformas)
+            {
+                plat.Draw(spriteBatch);
+            }
+
+            jugador.Draw(spriteBatch);
+            
             spriteBatch.End();
 
             spriteBatch.Begin();
