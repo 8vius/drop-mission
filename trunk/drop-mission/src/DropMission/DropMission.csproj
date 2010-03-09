@@ -101,6 +101,7 @@
     <Compile Include="ScreensManager\IntroScreen.cs" />
     <Compile Include="ScreensManager\LevelScreen.cs" />
     <Compile Include="ScreensManager\MenuScreen.cs" />
+    <Compile Include="Screens\Menu\MessageBoxScreen.cs" />
     <Compile Include="ScreensManager\ScreenManager.cs" />
     <Compile Include="Screens\Levels\Desierto.cs" />
     <Compile Include="Screens\LogoScreen.cs" />

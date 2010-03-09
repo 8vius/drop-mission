@@ -148,7 +148,7 @@ namespace DropMission.ScreensManager
             }
 
             if (input.WasKeyPressed(Keys.Escape))
-                ScreenManager.Game.Exit();
+                MenuCancel();
 
             if (input.WasKeyPressed(Keys.Enter))
                 MenuSelect(selectedEntry);
