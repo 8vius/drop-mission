@@ -5,6 +5,8 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using DropMission.Entidades;
+using Microsoft.Xna.Framework.Input;
+using DropMission.Screens.Menu;
 
 namespace DropMission.ScreensManager
 {

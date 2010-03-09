@@ -5,12 +5,12 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using DropMission.Screens.Menu;
 
 namespace DropMission.ScreensManager
 {
     public abstract class MenuScreen : GameScreen
     {
-
         #region Fields and Properties
 
         //Lista de imagenes de las opciones
@@ -19,30 +19,6 @@ namespace DropMission.ScreensManager
             get { return menuEntries; }
         }
         List<Texture2D> menuEntries = new List<Texture2D>();
-
-        //Imagen del fondo
-        public Texture2D Background
-        {
-            get { return background; }
-            set { background = value; }
-        }
-        Texture2D background;
-
-        //Imagen del titulo
-        public Texture2D Title
-        {
-            get { return title; }
-            set { title = value; }
-        }
-        Texture2D title;
-
-        //Imagen del jugador
-        public Texture2D Player
-        {
-            get { return player; }
-            set { player = value; }
-        }
-        Texture2D player;
 
         //Imagen de la estrella
         public Texture2D SelectedOption
@@ -67,22 +43,6 @@ namespace DropMission.ScreensManager
             set { positionMenu = value; }
         }
         Vector2 positionMenu;
-
-        //Posicion inicial del titulo
-        public Vector2 StartPositionTitle
-        {
-            get { return startPositionTitle; }
-            set { startPositionTitle = value; }
-        }
-        Vector2 startPositionTitle;
-
-        //Posicion inicial del jugador
-        public Vector2 StartPositionPlayer
-        {
-            get { return startPositionPlayer; }
-            set { startPositionPlayer = value; }
-        }
-        Vector2 startPositionPlayer;
 
         //Variable para verificar que opcion eligio el usuario
         int selectedEntry = 0;
@@ -112,15 +72,6 @@ namespace DropMission.ScreensManager
 
         public override void UnloadContent()
         {
-            if (background != null)
-               background = null;
-
-            if (player != null)
-                player = null;
-
-            if (title != null)
-                title = null;
-
             if (selectedOption != null)
                 selectedOption = null;
         }
@@ -171,17 +122,8 @@ namespace DropMission.ScreensManager
         public override void Draw(GameTime gameTime)
         {
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
-            Viewport viewport = ScreenManager.Game.GraphicsDevice.Viewport;
 
             spriteBatch.Begin();
-
-            spriteBatch.Draw(background, new Rectangle(0, 0, viewport.Width, viewport.Height), Color.White);
-
-            spriteBatch.Draw(title, new Rectangle((int)startPositionTitle.X, (int)startPositionTitle.Y, 
-                title.Width, title.Height), Color.White);
-
-            spriteBatch.Draw(player, new Rectangle((int)startPositionPlayer.X, (int)startPositionPlayer.Y, 
-                player.Width, player.Height), Color.White);
 
             positionMenu = startPositionMenu;
 

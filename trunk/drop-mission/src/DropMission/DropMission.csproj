@@ -106,6 +106,7 @@
     <Compile Include="Screens\Levels\Desierto.cs" />
     <Compile Include="Screens\LogoScreen.cs" />
     <Compile Include="Screens\Menu\MainMenuScreen.cs" />
+    <Compile Include="Screens\Menu\PauseMenuScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
