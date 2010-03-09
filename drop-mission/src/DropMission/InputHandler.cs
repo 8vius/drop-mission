@@ -5,6 +5,8 @@ using System.Text;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using DropMission.Entidades;
+using DropMission.Screens.Menu;
+using DropMission.ScreensManager;
 
 namespace DropMission
 {
@@ -32,7 +34,6 @@ namespace DropMission
 
             keyboard = new KeyboardHandler();
             player = playerHandled;
-
         }
 
         #endregion
