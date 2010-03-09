@@ -98,13 +98,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Menu\MenuFont.spritefont">
-      <Name>MenuFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="quillaIntroLogoWhite.png">
       <Name>quillaIntroLogoWhite</Name>
       <Importer>TextureImporter</Importer>
@@ -143,44 +136,51 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Menu\options.png">
+    <Compile Include="Menu\MainMenu\options.png">
       <Name>options</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Menu\quit.png">
+    <Compile Include="Menu\MainMenu\quit.png">
       <Name>quit</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Menu\Star.png">
+    <Compile Include="Menu\MainMenu\Star.png">
       <Name>Star</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Menu\startGame.png">
+    <Compile Include="Menu\MainMenu\startGame.png">
       <Name>startGame</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Menu\title.png">
+    <Compile Include="Menu\MainMenu\title.png">
       <Name>title</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Menu\Fondo.png">
+    <Compile Include="Menu\MainMenu\Fondo.png">
       <Name>Fondo</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Menu\Player.png">
+    <Compile Include="Menu\MainMenu\Player.png">
       <Name>Player</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Menu\MessageBox\MessageBoxFont.spritefont">
+      <Name>MessageBoxFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

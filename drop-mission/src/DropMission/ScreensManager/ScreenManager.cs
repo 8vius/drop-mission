@@ -26,6 +26,9 @@ namespace DropMission.ScreensManager
 
         //Is the screen manager initialized?
         bool isInitialized;
+
+        Texture2D pixel;
+
         #endregion
 
         #region Properties
@@ -84,6 +87,8 @@ namespace DropMission.ScreensManager
             ContentManager content = Game.Content;
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            pixel = content.Load<Texture2D>("singlePixel");
 
             //load screen dedicated content
             foreach (GameScreen screen in screens)
@@ -213,6 +218,23 @@ namespace DropMission.ScreensManager
             //Finally, remove the screen from both lists.
             screens.Remove(screen);
             screensToUpdate.Remove(screen);
+        }
+
+        /// <summary>
+        /// Helper draws a translucent black fullscreen sprite, used for fading
+        /// screens in and out, and for darkening the background behind popups.
+        /// </summary>
+        public void FadeBackBufferToBlack(int alpha)
+        {
+            Viewport viewport = Viewport;
+
+            spriteBatch.Begin();
+
+            spriteBatch.Draw(pixel,
+                             new Rectangle(0, 0, viewport.Width, viewport.Height),
+                             new Color(0, 0, 0, (byte)alpha));
+
+            spriteBatch.End();
         }
         #endregion
     }
