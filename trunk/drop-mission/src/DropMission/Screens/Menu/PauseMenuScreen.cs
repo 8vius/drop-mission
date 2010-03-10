@@ -23,9 +23,13 @@ namespace DropMission.Screens.Menu
             TransitionOffTime = TimeSpan.FromSeconds(0.2);
 
             StartPositionMenu = new Vector2(100, 150);
+
+            
         }
 
         #endregion
+
+        #region LoadContent
 
         public override void LoadContent()
         {
@@ -35,6 +39,10 @@ namespace DropMission.Screens.Menu
             MenuEntries.Add(content.Load<Texture2D>("Menu//MainMenu//startGame"));
             MenuEntries.Add(content.Load<Texture2D>("Menu//MainMenu//quit"));
         }
+
+        #endregion
+
+        #region MenuOperations
 
         public override void MenuSelect(int selected)
         {
@@ -48,8 +56,14 @@ namespace DropMission.Screens.Menu
 
         public override void MenuCancel()
         {
-            ScreenManager.AddScreen(new MessageBoxScreen("Are you sure you want to exit?"));
+            //ScreenManager.AddScreen(new MessageBoxScreen("Are you sure you want to exit?"));
+            ExitScreen();
+            ScreenManager.AddScreen(new MainMenuScreen());
         }
+
+        #endregion
+
+        #region Draw
 
         public override void Draw(GameTime gameTime)
         {
@@ -58,5 +72,7 @@ namespace DropMission.Screens.Menu
 
             base.Draw(gameTime);
         }
+
+        #endregion
     }
 }

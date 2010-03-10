@@ -22,7 +22,7 @@ namespace DropMission.ScreensManager
         SpriteBatch spriteBatch;
 
         //An input system so we can have control
-        KeyboardHandler input;
+        InputHandler input = new InputHandler();
 
         //Is the screen manager initialized?
         bool isInitialized;
@@ -43,7 +43,7 @@ namespace DropMission.ScreensManager
         /// <summary>
         /// The input system property
         /// </summary>
-        public KeyboardHandler Input
+        public InputHandler Input
         {
             get { return input; }
         }
@@ -74,8 +74,6 @@ namespace DropMission.ScreensManager
         {
             base.Initialize();
 
-            //Creates a new InputSystem
-            input = new KeyboardHandler();
             isInitialized = true;
         }
 
@@ -153,7 +151,7 @@ namespace DropMission.ScreensManager
                     {
                         if (firstScreen)
                         {
-                            screen.HandleInput();
+                            screen.HandleInput(input, gameTime);
                             firstScreen = false;
                         }
 

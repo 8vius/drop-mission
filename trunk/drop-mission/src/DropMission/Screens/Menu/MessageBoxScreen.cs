@@ -60,14 +60,12 @@ namespace DropMission.Screens.Menu
 
         #region HandlerInput
 
-        public override void HandleInput()
+        public override void HandleInput(InputHandler input, GameTime gameeTime)
         {
-            KeyboardHandler input = ScreenManager.Input;
-
-            if(input.WasKeyPressed(Keys.Enter))
+            if (input.IsMenuEntrySelected())
                 ScreenManager.Game.Exit();
 
-            if (input.WasKeyPressed(Keys.Escape))
+            if (input.IsMenuCancel())
                 ExitScreen();
         }
 

@@ -101,6 +101,8 @@ namespace DropMission.ScreensManager
 
         #endregion
 
+        #region Constructor
+
         /// <summary>
         /// Constructor de la clase y solo asigna 1.5 segundos
         /// a las transiciones de entrada y salida de la pantalla
@@ -109,6 +111,101 @@ namespace DropMission.ScreensManager
         {
             TransitionOnTime = TransitionOffTime = TimeSpan.FromSeconds(1.5);
         }
+
+        #endregion
+
+        #region HandlerInput
+
+        public override void HandleInput(InputHandler input, GameTime gameTime)
+        {
+            if (input.IsPlayerStaticRight(jugador))
+            {
+                jugador.Direccion = "Derecha";
+                jugador.Estatico();
+                jugador.GirarArma(posicionArma.Derecha);
+
+                if (input.IsHoldingKey(Keys.Up))
+                    jugador.GirarArma(posicionArma.ArribaDerecha);
+                if (input.IsHoldingKey(Keys.Down))
+                    jugador.GirarArma(posicionArma.AbajoDerecha);
+            }
+
+            if (input.IsPlayerStaticLeft(jugador))
+            {
+                jugador.Direccion = "Izquierda";
+                jugador.Estatico();
+                jugador.GirarArma(posicionArma.Izquierda);
+
+                if (input.IsHoldingKey(Keys.Up))
+                    jugador.GirarArma(posicionArma.ArribaIzquierda);
+                if (input.IsHoldingKey(Keys.Down))
+                    jugador.GirarArma(posicionArma.AbajoIzquierda);
+            }
+
+            if (input.IsPlayerWalkingRight() && !input.IsPlayerStaticRight(jugador))
+            {
+                jugador.Direccion = "Derecha";
+                jugador.CaminarDerecha();
+
+                if (input.IsHoldingKey(Keys.Up))
+                    jugador.GirarArma(posicionArma.ArribaDerecha);
+                if (input.IsHoldingKey(Keys.Down))
+                    jugador.GirarArma(posicionArma.AbajoDerecha);
+            }
+
+            if (input.IsPlayerWalkingLeft() && !input.IsPlayerStaticLeft(jugador))
+            {
+                jugador.Direccion = "Izquierda";
+                jugador.CaminarIzquierda();
+
+                if (input.IsHoldingKey(Keys.Up))
+                    jugador.GirarArma(posicionArma.ArribaIzquierda);
+                if (input.IsHoldingKey(Keys.Down))
+                    jugador.GirarArma(posicionArma.AbajoIzquierda);
+            }
+            
+            if (input.IsPlayerShooting())
+            {
+                jugador.Disparar(gameTime);
+            }
+            
+
+            if (input.IsPlayerLookingUp() && !input.IsPlayerWalkingRight() 
+                && !input.IsPlayerWalkingLeft())
+            {
+                jugador.GirarArma(posicionArma.Arriba);
+            }
+
+            if (input.IsPlayerLookingDown() && !input.IsPlayerWalkingRight()
+                && !input.IsPlayerWalkingLeft())
+            {
+                jugador.GirarArma(posicionArma.Abajo);
+            }
+
+            if (input.IsPlayerJumping(jugador))
+            {
+                jugador.Saltar();
+            }
+
+            if (input.IsPlayerFalling(jugador))
+            {
+                jugador.Caer();
+            }
+
+            if (input.IsPlayerReset())
+            {
+                jugador.Reset();
+            }
+
+            if (input.IsPausePressed())
+            {
+                ScreenManager.AddScreen(new PauseMenuScreen());
+            }
+        }
+
+        #endregion
+
+        #region Update
 
         public override void Update(GameTime gameTime, bool covered)
         {
@@ -166,6 +263,10 @@ namespace DropMission.ScreensManager
             base.Update(gameTime, covered);
         }
 
+        #endregion
+
+        #region Draw
+
         public override void Draw(GameTime gameTime)
         {
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
@@ -203,6 +304,10 @@ namespace DropMission.ScreensManager
             spriteBatch.End();
         }
 
+        #endregion
+
+        #region ScrollCamera
+
         private void ScrollCamera(Viewport viewport)
         {
             // Esta es la medida donde queremos que se pare el player
@@ -230,6 +335,8 @@ namespace DropMission.ScreensManager
             float maxCameraPosition = 5000;
             cameraPosition = MathHelper.Clamp(cameraPosition + cameraMovement, 0.0f, maxCameraPosition);
         }
+
+        #endregion
 
     }
 }
