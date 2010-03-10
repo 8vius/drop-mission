@@ -80,28 +80,28 @@ namespace DropMission.ScreensManager
 
         #region HandleInput
 
-        public override void HandleInput()
+        public override void HandleInput(InputHandler input, GameTime gameTime)
         {
-            KeyboardHandler input = ScreenManager.Input;
-
-            if(input.WasKeyPressed(Keys.Up))
+            if(input.IsMenuEntryUp())
             {
                 selectedEntry--;
+
                 if (selectedEntry < 0)
                     selectedEntry = menuEntries.Count - 1;
             }
 
-            if (input.WasKeyPressed(Keys.Down))
+            if (input.IsMenuEntryDown())
             {
                 selectedEntry++;
+
                 if (selectedEntry >= menuEntries.Count)
                     selectedEntry = 0;
             }
 
-            if (input.WasKeyPressed(Keys.Escape))
+            if (input.IsMenuCancel())
                 MenuCancel();
 
-            if (input.WasKeyPressed(Keys.Enter))
+            if (input.IsMenuEntrySelected())
                 MenuSelect(selectedEntry);
 
         }

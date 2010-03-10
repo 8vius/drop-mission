@@ -33,12 +33,12 @@ namespace DropMission.Screens
             Enemigos.Add(CamperPrueba);
         }
 
-        public override void Initialize()
+        /*public override void Initialize()
         {
-            InputHandler input = new InputHandler(ScreenManager.Game, Jugador);
-            ScreenManager.Game.Components.Add(input);
+            //InputHandler input = new InputHandler(ScreenManager.Game, Jugador);
+            //ScreenManager.Game.Components.Add(input);
             base.Initialize();
-        }
+        }*/
 
         public override void LoadContent()
         {

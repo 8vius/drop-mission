@@ -284,7 +284,7 @@ namespace DropMission.ScreensManager
         /// <summary>
         /// Allows the screen to handle input
         /// </summary>
-        public virtual void HandleInput()
+        public virtual void HandleInput(InputHandler input, GameTime gameTime)
         {
             //if the screen is not active, do nothing
             if (screenState != ScreenState.Active)
