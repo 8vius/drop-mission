@@ -136,6 +136,7 @@ namespace DropMission
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
+
             spriteBatch.Draw(spriteSheetAlive,
                              destinationRect,
                              sourceRect,

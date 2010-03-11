@@ -125,5 +125,23 @@ namespace DropMission.Entidades
             if (posicion.Y < (playerRect.Y - 600) || posicion.Y > (playerRect.Y + 600))
                 Vivo = false;
         }
+
+        public void Update(Rectangle playerRect, List<Enemy> enemigos)
+        {
+            if (Vivo)
+            {
+               Mover(playerRect);
+            }
+
+            foreach (Enemy enemigo in enemigos)
+            {
+                if (enemigo.DestinationRect.Intersects(RectanguloDestino))
+                {
+                    Vivo = false;
+                    enemigo.Alive = false;
+                }
+            }
+
+        }
     }
 }

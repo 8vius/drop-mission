@@ -249,10 +249,7 @@ namespace DropMission.ScreensManager
             //Hace un update de movimiento de las balas que fueron disparadas
             foreach (Bala bala in jugador.arma.Balas)
             {
-                if (bala.Vivo)
-                {
-                    bala.Mover(jugador.RectanguloDestino);
-                }
+                bala.Update(jugador.RectanguloDestino, enemigos);
             }
 
             foreach (Enemy enemigo in enemigos)
@@ -284,8 +281,11 @@ namespace DropMission.ScreensManager
 
             foreach (Enemy enemigo in enemigos)
             {
-                enemigo.Draw(spriteBatch);
-                enemigo.CalcularTimer(gameTime);
+                if (enemigo.Alive)
+                {
+                    enemigo.Draw(spriteBatch);
+                    enemigo.CalcularTimer(gameTime);
+                }
             }
 
             //Dibujar todas las plataformas del nivel
